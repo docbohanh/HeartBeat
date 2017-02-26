@@ -90,6 +90,9 @@
 		13EB4AD31E62AC2B00DFAC5F /* Lato-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 13EB4ACC1E62AC2B00DFAC5F /* Lato-Medium.ttf */; };
 		13EB4AD41E62AC2B00DFAC5F /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 13EB4ACD1E62AC2B00DFAC5F /* Lato-Regular.ttf */; };
 		13EB4AD51E62AC2B00DFAC5F /* Lato-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 13EB4ACE1E62AC2B00DFAC5F /* Lato-Semibold.ttf */; };
+		13EB4AD71E62AD6A00DFAC5F /* HTTPGetArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13EB4AD61E62AD6A00DFAC5F /* HTTPGetArticle.swift */; };
+		13EB4AD91E62B0B100DFAC5F /* MGSwipeTableCell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13EB4AD81E62B0B100DFAC5F /* MGSwipeTableCell.framework */; };
+		13EB4ADA1E62B0B100DFAC5F /* MGSwipeTableCell.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 13EB4AD81E62B0B100DFAC5F /* MGSwipeTableCell.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5275E5BE1936B6F0691825D1 /* Pods_ManUNews.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C70497026765A5DFDD2B71D5 /* Pods_ManUNews.framework */; };
 /* End PBXBuildFile section */
 
@@ -116,6 +119,7 @@
 				13EB4A9A1E62A71800DFAC5F /* RealmSwift.framework in Embed Frameworks */,
 				13EB4A941E62A71800DFAC5F /* PHExtensions.framework in Embed Frameworks */,
 				13EB4A901E62A71800DFAC5F /* JGProgressHUD.framework in Embed Frameworks */,
+				13EB4ADA1E62B0B100DFAC5F /* MGSwipeTableCell.framework in Embed Frameworks */,
 				13EB4A8A1E62A71800DFAC5F /* CleanroomLogger.framework in Embed Frameworks */,
 				13EB4AA01E62A71800DFAC5F /* SwiftyUserDefaults.framework in Embed Frameworks */,
 			);
@@ -196,6 +200,8 @@
 		13EB4ACC1E62AC2B00DFAC5F /* Lato-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Medium.ttf"; sourceTree = "<group>"; };
 		13EB4ACD1E62AC2B00DFAC5F /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
 		13EB4ACE1E62AC2B00DFAC5F /* Lato-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Semibold.ttf"; sourceTree = "<group>"; };
+		13EB4AD61E62AD6A00DFAC5F /* HTTPGetArticle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPGetArticle.swift; sourceTree = "<group>"; };
+		13EB4AD81E62B0B100DFAC5F /* MGSwipeTableCell.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MGSwipeTableCell.framework; path = Carthage/Build/iOS/MGSwipeTableCell.framework; sourceTree = "<group>"; };
 		8F6F4BC398C375E0C07E27A6 /* Pods-ManUNews.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ManUNews.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ManUNews/Pods-ManUNews.debug.xcconfig"; sourceTree = "<group>"; };
 		C70497026765A5DFDD2B71D5 /* Pods_ManUNews.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ManUNews.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE1DBF686DBD681F84766623 /* Pods-ManUNews.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ManUNews.release.xcconfig"; path = "Pods/Target Support Files/Pods-ManUNews/Pods-ManUNews.release.xcconfig"; sourceTree = "<group>"; };
@@ -212,6 +218,7 @@
 				13EB4A911E62A71800DFAC5F /* PagingMenuController.framework in Frameworks */,
 				13EB4A9D1E62A71800DFAC5F /* SnapKit.framework in Frameworks */,
 				13EB4ABE1E62AA7400DFAC5F /* RxExtensions.framework in Frameworks */,
+				13EB4AD91E62B0B100DFAC5F /* MGSwipeTableCell.framework in Frameworks */,
 				13EB4AB31E62A8C100DFAC5F /* Wrap.framework in Frameworks */,
 				13EB4A871E62A71800DFAC5F /* CleanroomASL.framework in Frameworks */,
 				13EB4A951E62A71800DFAC5F /* Reachability.framework in Frameworks */,
@@ -381,6 +388,7 @@
 		13EB4AA21E62A71E00DFAC5F /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				13EB4AD81E62B0B100DFAC5F /* MGSwipeTableCell.framework */,
 				13EB4ABD1E62AA7400DFAC5F /* RxExtensions.framework */,
 				13EB4ABA1E62AA4400DFAC5F /* RxCocoa.framework */,
 				13EB4AAC1E62A8C100DFAC5F /* Crypto.framework */,
@@ -414,11 +422,11 @@
 		13EB4AA41E62A7CC00DFAC5F /* HTTP */ = {
 			isa = PBXGroup;
 			children = (
-				13EB4AB51E62AA1100DFAC5F /* Support */,
-				13EB4AA51E62A82A00DFAC5F /* APIs */,
 				13EB4AA61E62A83700DFAC5F /* HTTPAPI.swift */,
 				13EB4AA71E62A83700DFAC5F /* HTTPManager.swift */,
 				13EB4AA81E62A83700DFAC5F /* HTTPProtocol.swift */,
+				13EB4AB51E62AA1100DFAC5F /* Support */,
+				13EB4AA51E62A82A00DFAC5F /* APIs */,
 			);
 			path = HTTP;
 			sourceTree = "<group>";
@@ -426,6 +434,7 @@
 		13EB4AA51E62A82A00DFAC5F /* APIs */ = {
 			isa = PBXGroup;
 			children = (
+				13EB4AD61E62AD6A00DFAC5F /* HTTPGetArticle.swift */,
 			);
 			path = APIs;
 			sourceTree = "<group>";
@@ -628,6 +637,7 @@
 				13EB4A611E62A6E400DFAC5F /* VideosViewController.swift in Sources */,
 				13EB4A791E62A6E400DFAC5F /* TimeSelectionHeaderView.swift in Sources */,
 				13EB4AAB1E62A83700DFAC5F /* HTTPProtocol.swift in Sources */,
+				13EB4AD71E62AD6A00DFAC5F /* HTTPGetArticle.swift in Sources */,
 				13EB4A751E62A6E400DFAC5F /* UIColor+FlatUI.m in Sources */,
 				13EB4A6B1E62A6E400DFAC5F /* Image.swift in Sources */,
 				13EB4A661E62A6E400DFAC5F /* Color.swift in Sources */,
@@ -776,6 +786,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ManUNews/Libraries",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = ManUNews/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -798,6 +809,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ManUNews/Libraries",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = ManUNews/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

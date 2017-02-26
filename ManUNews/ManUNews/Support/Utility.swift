@@ -50,6 +50,16 @@ struct Utility {
         return label.frame.height
     }
     
+    /// Căn giữa cho text và image của button
+    func centeredTextAndImage(for button: UIButton) {
+        let spacing: CGFloat = 3.0
+        let imageSize: CGSize = button.imageView!.image!.size
+        button.titleEdgeInsets = UIEdgeInsetsMake(0.0, -imageSize.width, -(imageSize.height + spacing), 0.0);
+        let labelString = NSString(string: button.titleLabel!.text!)
+        let titleSize = labelString.size(attributes: [NSFontAttributeName: button.titleLabel!.font])
+        button.imageEdgeInsets = UIEdgeInsetsMake(-(titleSize.height + spacing), 0.0, 0.0, -titleSize.width);
+    }
+    
 //    func getGMSPath(from coordinate: [Coordinate]) -> GMSPath {
 //        let path = GMSMutablePath()
 //        coordinate.forEach { path.add($0) }

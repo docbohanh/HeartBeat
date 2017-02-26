@@ -52,6 +52,7 @@ class RealmArticle: Object {
         description: String,
         publishDate: String,
         imageLink: String) {
+        
         self.init()
         self.ID = ID
         self.title = title

@@ -9,10 +9,12 @@
 import UIKit
 import SnapKit
 import PHExtensions
+import CleanroomLogger
+import MGSwipeTableCell
 
 class ArticleViewController: GeneralViewController {
     fileprivate enum Size: CGFloat {
-        case padding15 = 15, padding5 = 5, padding10 = 10, button = 44
+        case padding15 = 15, padding5 = 5, padding10 = 10, button = 44, cell = 100
     }
     
     /// PRIVATE
@@ -70,14 +72,48 @@ class ArticleViewController: GeneralViewController {
 //MARK: SELECTOR
 //------------------------------
 extension ArticleViewController {
-    
+    func refresh(refreshControl: UIRefreshControl) {
+        
+        /* Thông báo cho người dùng không có mạng */
+        guard ReachabilitySupport.instance.networkReachable else {
+            HUD.showMessage("Bạn đang offline, vui lòng kiểm tra lại kết nối")
+            return
+        }
+        
+        let request = HTTPGetArticle.RequestType(pageNumber: 10, rowPerPage: 15)
+        
+        HTTPManager.shared.request(
+            type: HTTPGetArticle.self,
+            request: request,
+            debug: .all) { (result) in
+                switch result {
+                case .success(let value):
+                    Log.message(.debug, message: "Cập nhật thành công: \(value.articles.count) bản tin")
+                    DatabaseSupport.shared.insert(article: value.articles.map{ $0.convertToRealmType() })
+                    self.reloadTableView()
+                    
+                    self.refreshControl.attributedTitle = NSAttributedString(string: self.dateFormatter.string(from: Date()))
+                    self.refreshControl.endRefreshing()
+                    
+                case .failure(let erorr):
+                    Log.message(.debug, message: "Cập nhật tin tức lỗi: \(erorr)")
+                    self.refreshControl.attributedTitle = NSAttributedString(string: "Cập nhật tin tức lỗi")
+                    self.refreshControl.endRefreshing()
+                }
+        }
+        
+        
+    }
 }
 
 //------------------------------
 //MARK: PRIVATE METHOD
 //------------------------------
 extension ArticleViewController {
-    
+    func reloadTableView() {
+        articleList = DatabaseSupport.shared.getAllArticle()
+        table.reloadData()
+    }
 }
 
 //--------------------------------------
@@ -93,17 +129,15 @@ extension ArticleViewController: UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: ArticleTableViewCell.articleIdentifier, for: indexPath) as! ArticleTableViewCell
         
-        configCell(for: cell, atIndexPath: indexPath)
+        configCell(for: cell, with: articleList[indexPath.row].convertToSyncType())
         return cell
     }
     
-    func configCell(for cell: ArticleTableViewCell, atIndexPath indexPath: IndexPath) {
-        
-        let article = articleList[indexPath.row]
+    func configCell(for cell: ArticleTableViewCell, with article: Article) {
         
         cell.backgroundColor = UIColor.white
         cell.textLabel?.text = article.title
-        cell.detailTextLabel?.text = article.descrip
+        cell.detailTextLabel?.text = article.description
         //        cell.labelTime.text = dateFormatter.string(from: Date(timeIntervalSince1970: article.time))
         cell.labelTime.text = article.publishDate //Utility.shared.stringFromPastTimeToText(article.time)
         cell.imageView?.image = Icon.Article.news
@@ -112,7 +146,7 @@ extension ArticleViewController: UITableViewDataSource {
         //            cell.countView.removeFromSuperview()
         //        }
         //
-        if indexPath.row % 3 == 0 {
+        if arc4random_uniform(3) % 3 == 0 {
             cell.markReadIcon.image = Icon.Article.markAsRead.tint(.main)
         }
         
@@ -166,7 +200,7 @@ extension ArticleViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return Size.cell..
     }
 }
 
@@ -178,7 +212,13 @@ extension ArticleViewController {
     func setupAllSubviews() {
         view.backgroundColor = UIColor.General.separator
         title = "Tin tức"
+        
         table = setupTableView()
+        
+        refreshControl = setupRefreshView()
+        refreshControl.addTarget(self, action: #selector(self.refresh(refreshControl:)), for: .valueChanged)
+        table.addSubview(refreshControl)
+        
         view.addSubview(table)
     }
     
@@ -195,6 +235,27 @@ extension ArticleViewController {
         table.separatorStyle = .none
         table.register(ArticleTableViewCell.self, forCellReuseIdentifier: ArticleTableViewCell.articleIdentifier)
         return table
+    }
+    
+    
+    func setupRefreshView() -> UIRefreshControl {
+        let refreshControl = UIRefreshControl()
+        
+        refreshControl.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 60)
+        
+        return refreshControl
+    }
+    
+    fileprivate func setupMGSwipeButton(title: String = "", image: UIImage, bgColor: UIColor = UIColor.main) -> MGSwipeButton {
+        let button = MGSwipeButton(title: title, icon: image.tint(.white), backgroundColor: bgColor)
+        
+        let buttonWidth = Utility.shared.widthForView(text: title, font: UIFont(name: FontType.latoRegular.., size: FontSize.small++)!, height: 20)
+        button.frame = CGRect(x: 0, y: 0, width: max(buttonWidth + 20, Size.cell..)  , height: Size.cell..)
+        button.titleLabel?.textAlignment = .center
+        button.titleLabel?.font = UIFont(name: FontType.latoRegular.., size: FontSize.small++)
+        Utility.shared.centeredTextAndImage(for: button)
+        
+        return button
     }
 }
 
