@@ -15,8 +15,6 @@ class ScheduleViewController: GeneralViewController {
         case padding15 = 15, padding5 = 5, padding10 = 10, button = 44
     }
     
-    var headerView: UIImageView!
-    var scrollView: UIScrollView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,7 +59,7 @@ extension ScheduleViewController {
 extension ScheduleViewController {
     func setupAllSubviews() {
         view.backgroundColor = UIColor.white
-        
+        title = "Lịch thi đấu"
     }
     
     func setupAllConstraints() {

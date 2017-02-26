@@ -14,7 +14,7 @@ class ArticleTableViewCell: UITableViewCell {
     static let articleIdentifier = "ArticleCell"
     
     enum Size: CGFloat {
-        case Padding15 = 15, Padding10 = 10, Label = 20, Image = 60, icon = 22, padding7 = 7
+        case Padding15 = 15, Padding10 = 10, Label = 20, Image = 60, icon = 22, padding7 = 7, padding5 = 5
     }
     
     var seperator: UIView!
@@ -45,7 +45,7 @@ class ArticleTableViewCell: UITableViewCell {
                                   height: bounds.height - Size.Padding10.. * 2)
         
         countView.frame = CGRect(x: bounds.width - Size.Label.. - Size.Padding10.. / 2,
-                                 y: bounds.height - Size.Label.. - Size.padding7.. / 2,
+                                 y: bounds.height - Size.Label.. - Size.padding5.. / 2,
                                  width: Size.Label..,
                                  height: Size.Label..)
         

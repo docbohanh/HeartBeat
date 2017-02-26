@@ -14,9 +14,6 @@ class ProfileViewController: GeneralViewController {
         case padding15 = 15, padding5 = 5, padding10 = 10, button = 44
     }
     
-    var headerView: UIImageView!
-    var scrollView: UIScrollView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -60,7 +57,7 @@ extension ProfileViewController {
 extension ProfileViewController {
     func setupAllSubviews() {
         view.backgroundColor = UIColor.white
-        
+        title = "Các nhân"
     }
     
     func setupAllConstraints() {

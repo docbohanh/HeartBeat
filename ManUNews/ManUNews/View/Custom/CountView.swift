@@ -42,7 +42,7 @@ class CountView: UIView {
         layer.masksToBounds = false
         layer.shadowRadius = 2.0
         layer.shadowOpacity = 0.3
-        layer.shadowOffset = CGSize(width: 2, height: 2)
+        layer.shadowOffset = CGSize(width: 1, height: 1)
         layer.shadowColor = UIColor.black.cgColor
         
         addSubview(countLabel)
