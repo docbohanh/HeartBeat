@@ -89,10 +89,11 @@ extension ResultViewController {
         var center = sender.center
         center.x += translation.x - prev.x
         center.y += translation.y - prev.y
-        if center.x + Size.heart.. / 2 > box.frame.minX
-            && center.x + Size.heart.. / 2 < box.frame.maxX
-            && center.y + Size.heart.. / 2 > box.frame.minY
-            && center.y + Size.heart.. / 2 < box.frame.maxY {
+        
+        if center.x - Size.heart.. / 2 > box.frame.origin.x
+            && center.x + Size.heart.. / 2 < box.frame.origin.x + box.bounds.width
+            && center.y + Size.heart.. / 2 > box.frame.origin.y
+            && center.y + Size.heart.. / 2 < box.frame.origin.y + box.bounds.height {
             
             sender.center = center
         }
@@ -233,7 +234,7 @@ extension ResultViewController {
     func setupAllConstraints() {
         box.snp.makeConstraints { (make) in
             make.centerX.centerY.equalTo(view)
-            make.width.height.equalTo(300)
+            make.width.height.equalTo(200)
         }
         
         dragView.snp.makeConstraints { (make) in
