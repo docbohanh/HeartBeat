@@ -9,7 +9,7 @@
 import Foundation
 import Unbox
 
-struct Article {
+struct Article: Unboxable {
     
     let ID: String
     let title: String
@@ -38,12 +38,12 @@ struct Article {
     }
     
     init(unboxer: Unboxer) throws {
-        self.ID          = try unboxer.unbox(key: "ID")
-        self.title       = try unboxer.unbox(key: "Title")
-        self.articleLink = try unboxer.unbox(key: "ArticleLink")
-        self.description = try unboxer.unbox(key: "Description")
-        self.publishDate = try unboxer.unbox(key: "PublishDate")
-        self.imageLink   = try unboxer.unbox(key: "ImageLink")
+        self.ID          = try unboxer.unbox(key: "id")
+        self.title       = try unboxer.unbox(key: "title")
+        self.articleLink = unboxer.unbox(key: "articleLink") ?? ""
+        self.description = try unboxer.unbox(key: "description")
+        self.publishDate = unboxer.unbox(key: "publishDate") ?? ""
+        self.imageLink   = unboxer.unbox(key: "imageLink") ?? ""
     }
     
 }

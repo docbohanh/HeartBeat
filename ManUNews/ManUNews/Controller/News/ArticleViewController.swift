@@ -80,7 +80,7 @@ extension ArticleViewController {
             return
         }
         
-        let request = HTTPGetArticle.RequestType(pageNumber: 10, rowPerPage: 15)
+        let request = HTTPGetArticle.RequestType(pageNumber: 1, rowPerPage: 10)
         
         HTTPManager.shared.request(
             type: HTTPGetArticle.self,
@@ -89,7 +89,13 @@ extension ArticleViewController {
                 switch result {
                 case .success(let value):
                     Log.message(.debug, message: "Cập nhật thành công: \(value.articles.count) bản tin")
-                    DatabaseSupport.shared.insert(article: value.articles.map{ $0.convertToRealmType() })
+                    
+                    let oldNews = DatabaseSupport.shared.getAllArticle().map { $0.ID }
+                    let news = value.articles.filter { !oldNews.contains($0.ID) }
+                    
+                    Log.message(.debug, message: "\(news.count) bản tin mới")
+                    
+                    DatabaseSupport.shared.insert(article: news.map{ $0.convertToRealmType() })
                     self.reloadTableView()
                     
                     self.refreshControl.attributedTitle = NSAttributedString(string: self.dateFormatter.string(from: Date()))

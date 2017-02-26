@@ -55,7 +55,7 @@ class HTTPManager {
                     guard let url = URL(string: object.URL.URLString) else {
                         throw HTTPError.invalidURL
                     }
-                    
+                    Log.message(.debug, message: "url: \(url)")
                     var request = URLRequest(url: url)
                     request.httpBody = data
                     request.httpMethod = "POST"
@@ -137,7 +137,7 @@ class HTTPManager {
             
             let object = type.init(request: content)
             stack.onNext(object.URL.URLString)
-            
+            Log.message(.debug, message: "url: \(object.URL.URLString)")
             let urlRequest: Observable<URLRequest>
             if object is HTTPGoogleProtocol {
                 urlRequest = createGoogleJSONRequest(object: object, debug: debug)

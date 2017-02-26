@@ -51,7 +51,7 @@ public class HTTPGetArticle: HTTPProtocol, HTTPWrapRequestProtocol, HTTPUnboxRes
         let articles: [Article]
         
         public required init(unboxer: Unboxer) throws {
-            self.articles = try unboxer.unbox(key: "Articles")
+            self.articles = try unboxer.unbox(key: "articles")
         }
         
     }
