@@ -1,21 +1,36 @@
 //
 //  AppDelegate.swift
-//  ManUNews
+//  ManuNews
 //
-//  Created by MILIKET on 2/26/17.
-//  Copyright © 2017 Bình Anh Electonics. All rights reserved.
+//  Created by Thành Lã on 2/21/17.
+//  Copyright © 2017 Thành Lã. All rights reserved.
 //
 
 import UIKit
+import CleanroomLogger
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
+        FileManager.default.createAppDirectory("Log", skipBackupAttribute: true)
+        let path = FileManager.default.getDocumentDirectory().appendingPathComponent("Log")
+        Log.enable(configuration: CustomLogConfiguration(minimumSeverity: .verbose, dayToKeep: 60, filePath: path.path))
+        
+        return true
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        let tabBar = Utility.shared.setupTabBarController()
+        
+        if let window = window {
+            window.rootViewController = tabBar
+            window.makeKeyAndVisible()
+        }
+        
         return true
     }
 

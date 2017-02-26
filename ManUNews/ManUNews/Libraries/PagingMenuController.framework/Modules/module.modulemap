@@ -1,0 +1,10 @@
+framework module PagingMenuController {
+  umbrella header "PagingMenuController.h"
+
+  export *
+  module * { export * }
+}
+
+module PagingMenuController.Swift {
+    header "PagingMenuController-Swift.h"
+}
