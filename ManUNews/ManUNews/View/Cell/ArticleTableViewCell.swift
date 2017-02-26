@@ -45,7 +45,7 @@ class ArticleTableViewCell: UITableViewCell {
                                   height: bounds.height - Size.Padding10.. * 2)
         
         countView.frame = CGRect(x: bounds.width - Size.Label.. - Size.Padding10.. / 2,
-                                 y: bounds.height - Size.Label.. - Size.padding7..,
+                                 y: bounds.height - Size.Label.. - Size.padding7.. / 2,
                                  width: Size.Label..,
                                  height: Size.Label..)
         

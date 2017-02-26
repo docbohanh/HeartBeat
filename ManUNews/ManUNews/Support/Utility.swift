@@ -168,12 +168,12 @@ struct Utility {
         let tabbarVC = UITabBarController()
         
         let naviNewsVC = UINavigationController(rootViewController: ArticleViewController())
-        let naviComunityVC = UINavigationController(rootViewController: UIViewController())
-        let naviResultVC = UINavigationController(rootViewController: UIViewController())
-        let naviScheduleVC = UINavigationController(rootViewController: VideosViewController())
-        let naviMoreVC = UINavigationController(rootViewController: ArticleDetailViewController())
+        let naviComunityVC = UINavigationController(rootViewController: ComunityViewController())
+        let naviResultVC = UINavigationController(rootViewController: ResultViewController())
+        let naviScheduleVC = UINavigationController(rootViewController: ScheduleViewController())
+        let naviProfileVC = UINavigationController(rootViewController: ProfileViewController())
         
-        let viewControllers = [naviNewsVC, naviResultVC, naviScheduleVC, naviComunityVC, naviMoreVC]
+        let viewControllers = [naviNewsVC, naviResultVC, naviScheduleVC, naviComunityVC, naviProfileVC]
         
         viewControllers.forEach { Utility.shared.configureAppearance(navigation: $0) }
         

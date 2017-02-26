@@ -98,7 +98,8 @@ extension ArticleViewController {
                     DatabaseSupport.shared.insert(article: news.map{ $0.convertToRealmType() })
                     self.reloadTableView()
                     
-                    self.refreshControl.attributedTitle = NSAttributedString(string: self.dateFormatter.string(from: Date()))
+                    let message = "Cập nhật lần cuối lúc " + self.dateFormatter.string(from: Date())
+                    self.refreshControl.attributedTitle = NSAttributedString(string: message)
                     self.refreshControl.endRefreshing()
                     
                 case .failure(let erorr):
@@ -207,6 +208,16 @@ extension ArticleViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return Size.cell..
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 2 * onePixel()
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let view = UIView()
+        view.backgroundColor = UIColor.General.separator
+        return view
     }
 }
 
