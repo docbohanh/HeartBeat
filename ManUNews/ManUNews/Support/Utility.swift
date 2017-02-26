@@ -163,7 +163,7 @@ struct Utility {
         let naviScheduleVC = UINavigationController(rootViewController: VideosViewController())
         let naviMoreVC = UINavigationController(rootViewController: ArticleDetailViewController())
         
-        let viewControllers = [naviNewsVC, naviComunityVC, naviResultVC, naviScheduleVC, naviMoreVC]
+        let viewControllers = [naviNewsVC, naviResultVC, naviScheduleVC, naviComunityVC, naviMoreVC]
         
         viewControllers.forEach { Utility.shared.configureAppearance(navigation: $0) }
         
@@ -178,10 +178,10 @@ struct Utility {
         
         let items: [(title: String, image: UIImage)] = [
             ("Tin tức", Icon.TabBar.article),
-            ("Thảo luận",  Icon.TabBar.noteBook),
             ("Kết quả",  Icon.TabBar.noteBook),
             ("Lịch thi đấu", Icon.TabBar.history),
-            ("Khác", Icon.TabBar.personal)
+            ("Bình loạn",  Icon.TabBar.noteBook),
+            ("Cá nhân", Icon.TabBar.personal)
         ]
         
         
