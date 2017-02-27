@@ -8,6 +8,41 @@
 
 import Foundation
 
+public struct HTTPAPI {
+    
+    public static var API: String = "http://125.212.226.60:3401/api/"
+    fileprivate static let GoogleDirectionAPI = "https://maps.googleapis.com/maps/api/directions/json?"
+    fileprivate static let GoogleGeocodingAPI = "https://maps.googleapis.com/maps/api/geocode/json?"
+    
+    enum APIs: String, URLStringConvertible {
+
+        case getArticle = "GetArticle"
+        case getResult = "GetCompetitionResult"
+        
+        var URLString: String {
+            guard HTTPAPI.API.characters.count > 0 else { fatalError("API address did not set") }
+            return HTTPAPI.API + self.rawValue
+        }
+    }
+    
+    enum Google: URLStringConvertible {
+        case direction
+        case geocoding
+        
+        var URLString: String {
+            switch self {
+            case .direction:
+                return HTTPAPI.GoogleDirectionAPI
+                
+            case .geocoding:
+                return HTTPAPI.GoogleGeocodingAPI
+            }
+            
+        }
+    }
+    
+}
+
 public protocol URLStringConvertible {
     /**
      A URL that conforms to RFC 2396.
@@ -46,36 +81,4 @@ extension URLRequest: URLStringConvertible {
 }
 
 
-public struct HTTPAPI {
-    
-    public static var API: String = "http://125.212.226.60:3401/api/"
-    fileprivate static let GoogleDirectionAPI = "https://maps.googleapis.com/maps/api/directions/json?"
-    fileprivate static let GoogleGeocodingAPI = "https://maps.googleapis.com/maps/api/geocode/json?"
-    
-    enum APIs: String, URLStringConvertible {
 
-        case getArticle = "GetArticle"
-        
-        var URLString: String {
-            guard HTTPAPI.API.characters.count > 0 else { fatalError("API address did not set") }
-            return HTTPAPI.API + self.rawValue
-        }
-    }
-    
-    enum Google: URLStringConvertible {
-        case direction
-        case geocoding
-        
-        var URLString: String {
-            switch self {
-            case .direction:
-                return HTTPAPI.GoogleDirectionAPI
-                
-            case .geocoding:
-                return HTTPAPI.GoogleGeocodingAPI
-            }
-            
-        }
-    }
-    
-}
