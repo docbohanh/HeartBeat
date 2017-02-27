@@ -41,6 +41,8 @@ class ResultViewController: GeneralViewController {
         
         setupAllSubviews()
         view.setNeedsUpdateConstraints()
+        
+        
     }
     
     override func didReceiveMemoryWarning() {
