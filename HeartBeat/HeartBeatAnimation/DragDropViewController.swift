@@ -14,6 +14,7 @@ class DragDropViewController: UIViewController {
     
     
     @IBOutlet var panGesture: UIPanGestureRecognizer!
+    
     var initialDragViewY: CGFloat = 0.0
     var isGoalReached: Bool {
         get {
@@ -40,7 +41,7 @@ class DragDropViewController: UIViewController {
         self.dragView.layer.cornerRadius = self.dragView.bounds.size.height / 2
         
         self.goalView.layer.cornerRadius = self.goalView.bounds.size.height / 2
-        self.goalView.layer.borderWidth = 4
+        self.goalView.layer.borderWidth = 2
         
         self.initialDragViewY = self.dragViewY.constant 
         
@@ -141,7 +142,7 @@ class DragDropViewController: UIViewController {
     }
     
     func updateGoalView() {
-        let goalColor = self.isGoalReached ? UIColor.white : UIColor(red: 174/255.0, green: 0, blue: 0, alpha: 1)
+        let goalColor = self.isGoalReached ? UIColor.white : UIColor.red
         self.goalView.layer.borderColor = goalColor.cgColor
         
         
