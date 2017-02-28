@@ -18,6 +18,10 @@
 		13E55B941E6506C10017DEC2 /* HeartBeatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E55B931E6506C10017DEC2 /* HeartBeatViewController.swift */; };
 		13E55BBF1E657C0F0017DEC2 /* MXParallaxHeader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13E55BBE1E657C0F0017DEC2 /* MXParallaxHeader.framework */; };
 		13E55BC01E657C0F0017DEC2 /* MXParallaxHeader.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 13E55BBE1E657C0F0017DEC2 /* MXParallaxHeader.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		13E55BC31E657ED30017DEC2 /* PHExtensions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13E55BC11E657ED30017DEC2 /* PHExtensions.framework */; };
+		13E55BC41E657ED30017DEC2 /* PHExtensions.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 13E55BC11E657ED30017DEC2 /* PHExtensions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		13E55BC51E657ED30017DEC2 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13E55BC21E657ED30017DEC2 /* SnapKit.framework */; };
+		13E55BC61E657ED30017DEC2 /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 13E55BC21E657ED30017DEC2 /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,6 +31,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				13E55BC61E657ED30017DEC2 /* SnapKit.framework in Embed Frameworks */,
+				13E55BC41E657ED30017DEC2 /* PHExtensions.framework in Embed Frameworks */,
 				13E55BC01E657C0F0017DEC2 /* MXParallaxHeader.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -48,6 +54,8 @@
 		13E55B931E6506C10017DEC2 /* HeartBeatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartBeatViewController.swift; sourceTree = "<group>"; };
 		13E55BBA1E657B7D0017DEC2 /* HeartBeatAnimation-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HeartBeatAnimation-Bridging-Header.h"; sourceTree = "<group>"; };
 		13E55BBE1E657C0F0017DEC2 /* MXParallaxHeader.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MXParallaxHeader.framework; path = HeartBeatAnimation/Libraries/MXParallaxHeader.framework; sourceTree = "<group>"; };
+		13E55BC11E657ED30017DEC2 /* PHExtensions.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PHExtensions.framework; path = HeartBeatAnimation/Libraries/PHExtensions.framework; sourceTree = "<group>"; };
+		13E55BC21E657ED30017DEC2 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = HeartBeatAnimation/Libraries/SnapKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +63,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13E55BC51E657ED30017DEC2 /* SnapKit.framework in Frameworks */,
+				13E55BC31E657ED30017DEC2 /* PHExtensions.framework in Frameworks */,
 				13E55BBF1E657C0F0017DEC2 /* MXParallaxHeader.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -100,6 +110,8 @@
 		13E55BBD1E657BA30017DEC2 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				13E55BC11E657ED30017DEC2 /* PHExtensions.framework */,
+				13E55BC21E657ED30017DEC2 /* SnapKit.framework */,
 				13E55BBE1E657C0F0017DEC2 /* MXParallaxHeader.framework */,
 			);
 			name = Libraries;
