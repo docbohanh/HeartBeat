@@ -36,11 +36,9 @@ class DragDropViewController: UIViewController {
         
         self.lastBounds = self.view.bounds
         self.dragAreaView.layer.borderWidth = 1
-        self.dragAreaView.layer.borderColor = UIColor.green.cgColor
+        self.dragAreaView.layer.borderColor = UIColor.white.cgColor
         
         self.dragView.layer.cornerRadius = self.dragView.bounds.size.height / 2
-        
-        self.dragViewX.constant = 100
         
         self.goalView.layer.cornerRadius = self.goalView.bounds.size.height / 2
         self.goalView.layer.borderWidth = 2
@@ -60,7 +58,7 @@ class DragDropViewController: UIViewController {
     }
     
     func boundsChanged() {
-//        self.returnToStartLocationAnimated(animated: false)
+        self.returnToStartLocationAnimated(animated: false)
         
         self.dragAreaView.bringSubview(toFront: self.goalView)
         self.dragAreaView.bringSubview(toFront: self.dragView)
