@@ -19,6 +19,7 @@
 		13C14F931E62A50F004A63F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13C14F911E62A50F004A63F9 /* Main.storyboard */; };
 		13C14F951E62A50F004A63F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13C14F941E62A50F004A63F9 /* Assets.xcassets */; };
 		13C14F981E62A50F004A63F9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13C14F961E62A50F004A63F9 /* LaunchScreen.storyboard */; };
+		13E55B9E1E6520A30017DEC2 /* HeaderResultTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E55B9D1E6520A30017DEC2 /* HeaderResultTableView.swift */; };
 		13EB4A5C1E62A6E400DFAC5F /* GeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13EB4A301E62A6E400DFAC5F /* GeneralViewController.swift */; };
 		13EB4A621E62A6E400DFAC5F /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13EB4A381E62A6E400DFAC5F /* Article.swift */; };
 		13EB4A631E62A6E400DFAC5F /* RealmArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13EB4A391E62A6E400DFAC5F /* RealmArticle.swift */; };
@@ -146,6 +147,7 @@
 		13C14F941E62A50F004A63F9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		13C14F971E62A50F004A63F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		13C14F991E62A50F004A63F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		13E55B9D1E6520A30017DEC2 /* HeaderResultTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderResultTableView.swift; sourceTree = "<group>"; };
 		13EB4A271E62A64600DFAC5F /* ManUNews-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ManUNews-Bridging-Header.h"; sourceTree = "<group>"; };
 		13EB4A301E62A6E400DFAC5F /* GeneralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralViewController.swift; sourceTree = "<group>"; };
 		13EB4A381E62A6E400DFAC5F /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
@@ -405,6 +407,7 @@
 			children = (
 				13EB4A4A1E62A6E400DFAC5F /* CountView.swift */,
 				13EB4A4B1E62A6E400DFAC5F /* SegmentedHeaderView.swift */,
+				13E55B9D1E6520A30017DEC2 /* HeaderResultTableView.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -574,7 +577,7 @@
 				TargetAttributes = {
 					13C14F891E62A50F004A63F9 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = AQ4F7PFFSM;
+						DevelopmentTeam = N5QD3D9LY3;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
@@ -688,6 +691,7 @@
 				13EB4A751E62A6E400DFAC5F /* UIColor+FlatUI.m in Sources */,
 				13EB4A6B1E62A6E400DFAC5F /* Image.swift in Sources */,
 				13EB4A661E62A6E400DFAC5F /* Color.swift in Sources */,
+				13E55B9E1E6520A30017DEC2 /* HeaderResultTableView.swift in Sources */,
 				13EB4A6F1E62A6E400DFAC5F /* ArticleTableViewCell.swift in Sources */,
 				13EB4A691E62A6E400DFAC5F /* Extensions.swift in Sources */,
 				13EB4AAA1E62A83700DFAC5F /* HTTPManager.swift in Sources */,
@@ -834,7 +838,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = AQ4F7PFFSM;
+				DEVELOPMENT_TEAM = N5QD3D9LY3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ManUNews/Libraries",
@@ -843,7 +847,7 @@
 				INFOPLIST_FILE = ManUNews/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.team.bornnineteenninety.ManuNews;
+				PRODUCT_BUNDLE_IDENTIFIER = com.teambornnineteenninety.ManuNews;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "ManUNews/ManUNews-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -857,7 +861,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = AQ4F7PFFSM;
+				DEVELOPMENT_TEAM = N5QD3D9LY3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ManUNews/Libraries",
@@ -866,7 +870,7 @@
 				INFOPLIST_FILE = ManUNews/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.team.bornnineteenninety.ManuNews;
+				PRODUCT_BUNDLE_IDENTIFIER = com.teambornnineteenninety.ManuNews;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "ManUNews/ManUNews-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;

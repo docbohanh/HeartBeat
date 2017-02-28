@@ -30,6 +30,7 @@ class HeartView: UIView {
     }
     
     fileprivate func setup() {
+        
         backgroundColor = UIColor.clear
         layer.masksToBounds = false
         layer.shadowRadius = 2.0

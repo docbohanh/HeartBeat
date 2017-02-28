@@ -18,10 +18,17 @@ class HeartBeatViewController: UIViewController {
     
     var dragAreaView: UIView! = {
         let view = UIView()
-        
+        view.layer.borderWidth = 2
+        view.layer.borderColor = UIColor.white.cgColor
+        view.backgroundColor = UIColor.groupTableViewBackground
         return view
     }()
-    var dragView: HeartView!
+    
+    var dragView: HeartView! = {
+        let view = HeartView()
+        return view
+    }()
+    
     var goalView: UIView!
     
     var dragViewX: NSLayoutConstraint!
@@ -41,7 +48,7 @@ class HeartBeatViewController: UIViewController {
     let dragAreaPadding = 5
     var lastBounds = CGRect.zero
     
-    var completion: (() -> ())?
+    var completion: (() -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
