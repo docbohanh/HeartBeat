@@ -16,10 +16,6 @@
 		13129F611E6403E000D2B82E /* DragDropViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13129F5F1E6403E000D2B82E /* DragDropViewController.xib */; };
 		13129F691E64300000D2B82E /* HeartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13129F681E64300000D2B82E /* HeartView.swift */; };
 		13E55B941E6506C10017DEC2 /* HeartBeatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E55B931E6506C10017DEC2 /* HeartBeatViewController.swift */; };
-		13E55B971E6507170017DEC2 /* PHExtensions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13E55B951E6507170017DEC2 /* PHExtensions.framework */; };
-		13E55B981E6507170017DEC2 /* PHExtensions.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 13E55B951E6507170017DEC2 /* PHExtensions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		13E55B991E6507170017DEC2 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13E55B961E6507170017DEC2 /* SnapKit.framework */; };
-		13E55B9A1E6507170017DEC2 /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 13E55B961E6507170017DEC2 /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,8 +25,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				13E55B981E6507170017DEC2 /* PHExtensions.framework in Embed Frameworks */,
-				13E55B9A1E6507170017DEC2 /* SnapKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -49,8 +43,6 @@
 		13129F5F1E6403E000D2B82E /* DragDropViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DragDropViewController.xib; sourceTree = "<group>"; };
 		13129F681E64300000D2B82E /* HeartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartView.swift; sourceTree = "<group>"; };
 		13E55B931E6506C10017DEC2 /* HeartBeatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartBeatViewController.swift; sourceTree = "<group>"; };
-		13E55B951E6507170017DEC2 /* PHExtensions.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PHExtensions.framework; path = HeartBeatAnimation/Libs/PHExtensions.framework; sourceTree = "<group>"; };
-		13E55B961E6507170017DEC2 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = HeartBeatAnimation/Libs/SnapKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,8 +50,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				13E55B971E6507170017DEC2 /* PHExtensions.framework in Frameworks */,
-				13E55B991E6507170017DEC2 /* SnapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,7 +59,6 @@
 		13129F401E6403B200D2B82E = {
 			isa = PBXGroup;
 			children = (
-				13E55B9C1E65071B0017DEC2 /* Libraries */,
 				13129F4B1E6403B200D2B82E /* HeartBeatAnimation */,
 				13129F4A1E6403B200D2B82E /* Products */,
 			);
@@ -98,15 +87,6 @@
 				13129F581E6403B200D2B82E /* Info.plist */,
 			);
 			path = HeartBeatAnimation;
-			sourceTree = "<group>";
-		};
-		13E55B9C1E65071B0017DEC2 /* Libraries */ = {
-			isa = PBXGroup;
-			children = (
-				13E55B951E6507170017DEC2 /* PHExtensions.framework */,
-				13E55B961E6507170017DEC2 /* SnapKit.framework */,
-			);
-			name = Libraries;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
