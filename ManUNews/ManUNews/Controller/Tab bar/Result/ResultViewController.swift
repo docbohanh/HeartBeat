@@ -95,15 +95,15 @@ extension ResultViewController: UITableViewDelegate {
         return Size.cell..
     }
     
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 2 * onePixel()
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return Size.cell..
     }
     
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let view = UIView()
-        view.backgroundColor = UIColor.General.separator
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = setupHeaderView()
         return view
     }
+    
 }
 
 // MARK: - Parallax header delegate
@@ -136,7 +136,9 @@ extension ResultViewController {
     }
     
     func setupAllConstraints() {
-        
+        tableView.snp.makeConstraints { (make) in
+            make.edges.equalTo(view)
+        }
     }
     
     func setupTableView() -> UITableView {
@@ -146,6 +148,12 @@ extension ResultViewController {
         table.separatorStyle = .none
         
         return table
+    }
+    
+    func setupHeaderView() -> HeaderResultTableView {
+        let view = HeaderResultTableView()
+        view.backgroundColor = UIColor.white
+        return view
     }
     
 }

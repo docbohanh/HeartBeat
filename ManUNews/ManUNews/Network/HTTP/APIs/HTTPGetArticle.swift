@@ -11,6 +11,89 @@ import Crypto
 import PHExtensions
 import Unbox
 
+import RxSwift
+import CleanroomLogger
+
+public class HTTPGetArticle: HTTPProtocol, HTTPDataRequestProcotol, HTTPDataResponseProtocol {
+    
+    //--------------- HTTPProtocol ---------------
+    
+    public var URL: URLStringConvertible {
+        return HTTPAPI.APIs.getArticle
+    }
+    
+    public var timeoutInterval: TimeInterval = 30.seconds
+    
+    public var cryptoType: HTTPCrypto = .none
+    
+    public typealias RequestType = Request
+    
+    public var request: RequestType
+    
+    public class Request {
+        
+        var pageNumber: Int
+        var rowPerPage: Int
+        
+        public init(pageNumber: Int, rowPerPage: Int) {
+            self.pageNumber = pageNumber
+            self.rowPerPage = rowPerPage
+        }
+        
+    }
+    
+    public required init(request: RequestType) {
+        self.request = request
+    }
+    
+    public func serialize(_ request: RequestType) -> Observable<Data> {
+        var data = Data()
+        
+        data.appendInt32(request.pageNumber)
+        data.appendInt32(request.rowPerPage)
+        
+        return Observable.just(data)
+    }
+    
+    //--------------- HTTPResponseProtocol ---------------
+    public class Response: CustomStringConvertible {
+        let articles: [Article]
+        
+        init(articles: [Article]) {
+            self.articles = articles
+        }
+        
+        public var description: String {
+            return "Getting \(articles.count) article)"
+        }
+    }
+    
+    public typealias ResponseType = Response
+    
+    public func deserialize(origin: RequestType, data rawData: Data) throws -> ResponseType {
+        do {
+            var data = rawData
+            
+            let articles = try (0..<data.readInt16()).map { _ in
+                Article(
+                    ID: try data.readString(),
+                    title: try data.readString(),
+                    articleLink: try data.readString(),
+                    description: try data.readString(),
+                    publishDate: try data.readString(),
+                    imageLink: try data.readString()
+                )
+            }
+            
+            return Response(articles: articles)
+        }
+        catch {
+            throw error
+        }
+    }
+}
+
+/*
 public class HTTPGetArticle: HTTPProtocol, HTTPWrapRequestProtocol, HTTPUnboxResponseProtocol {
     
     //--------------- HTTPProtocol ---------------
@@ -60,3 +143,4 @@ public class HTTPGetArticle: HTTPProtocol, HTTPWrapRequestProtocol, HTTPUnboxRes
         return try ResponseType(unboxer: unboxer)
     }
 }
+*/

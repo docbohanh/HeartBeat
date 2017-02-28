@@ -25,28 +25,16 @@ class ArticleViewController: GeneralViewController {
     }()
     
     /// VIEW
-    var table: UITableView!
+    var tableView: UITableView!
     
     var refreshControl: UIRefreshControl!
     
-    var articleList: [RealmArticle] = {
-//        (1...5).forEach { value in
-//            let article = RealmArticle(
-//                ID: UUID().uuidString,
-//                title: "Pogba sẽ trở lại và lợi hại gấp :3",
-//                articleLink: "",
-//                description: "Chàng tiền vệ đang thiếu một chút may mắn",
-//                publishDate: "",
-//                imageLink: "")
-//            
-//            DatabaseSupport.shared.insert(article: [article])
-//        }
-        
-        return DatabaseSupport.shared.getAllArticle()//.sorted { $0.time > $1.time}
-    }()
+    var articleList: [Article] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        DataManager.shared.delegate = self
         
         setupAllSubviews()
         view.setNeedsUpdateConstraints()
@@ -80,35 +68,20 @@ extension ArticleViewController {
             return
         }
         
-        let request = HTTPGetArticle.RequestType(pageNumber: 1, rowPerPage: 10)
+        DataManager.shared.getArticle()
         
-        HTTPManager.shared.request(
-            type: HTTPGetArticle.self,
-            request: request,
-            debug: .all) { (result) in
-                switch result {
-                case .success(let value):
-                    Log.message(.debug, message: "Cập nhật thành công: \(value.articles.count) bản tin")
-                    
-                    let oldNews = DatabaseSupport.shared.getAllArticle().map { $0.ID }
-                    let news = value.articles.filter { !oldNews.contains($0.ID) }
-                    
-                    Log.message(.debug, message: "\(news.count) bản tin mới")
-                    
-                    DatabaseSupport.shared.insert(article: news.map{ $0.convertToRealmType() })
-                    self.reloadTableView()
-                    
-                    let message = "Cập nhật lần cuối lúc " + self.dateFormatter.string(from: Date())
-                    self.refreshControl.attributedTitle = NSAttributedString(string: message)
-                    self.refreshControl.endRefreshing()
-                    
-                case .failure(let erorr):
-                    Log.message(.debug, message: "Cập nhật tin tức lỗi: \(erorr)")
-                    self.refreshControl.attributedTitle = NSAttributedString(string: "Cập nhật tin tức lỗi")
-                    self.refreshControl.endRefreshing()
-                }
-        }
         
+    }
+}
+
+//------------------------------
+//MARK: GET ARTICLE DELEGATE
+//------------------------------
+extension ArticleViewController: DataManagerDelagate {
+    func downloadArticle(status: Bool, articles: [Article]) {
+        guard status else { HUD.showMessage("Chưa có tin tức mới", position: .center); return }
+        articles.forEach { articleList.insert($0, at: 0) }
+        tableView.reloadData()
         
     }
 }
@@ -117,10 +90,8 @@ extension ArticleViewController {
 //MARK: PRIVATE METHOD
 //------------------------------
 extension ArticleViewController {
-    func reloadTableView() {
-        articleList = DatabaseSupport.shared.getAllArticle()
-        table.reloadData()
-    }
+    
+    
 }
 
 //--------------------------------------
@@ -136,7 +107,7 @@ extension ArticleViewController: UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: ArticleTableViewCell.articleIdentifier, for: indexPath) as! ArticleTableViewCell
         
-        configCell(for: cell, with: articleList[indexPath.row].convertToSyncType())
+        configCell(for: cell, with: articleList[indexPath.row])
         return cell
     }
     
@@ -230,17 +201,17 @@ extension ArticleViewController {
         view.backgroundColor = UIColor.General.separator
         title = "Tin tức"
         
-        table = setupTableView()
+        tableView = setupTableView()
         
         refreshControl = setupRefreshView()
         refreshControl.addTarget(self, action: #selector(self.refresh(refreshControl:)), for: .valueChanged)
-        table.addSubview(refreshControl)
+        tableView.addSubview(refreshControl)
         
-        view.addSubview(table)
+        view.addSubview(tableView)
     }
     
     func setupAllConstraints() {
-        table.snp.makeConstraints { (make) in
+        tableView.snp.makeConstraints { (make) in
             make.edges.equalTo(view)
         }
     }

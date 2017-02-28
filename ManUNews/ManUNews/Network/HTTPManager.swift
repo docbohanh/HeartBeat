@@ -33,13 +33,73 @@ class HTTPManager {
     
     private let bag = DisposeBag()
     
-    func request<T, Request, Response>(type: T.Type, request content: Request, completionHandler: @escaping (Result<Response>) -> Void)
+    func request<T, Request, Response>(type: T.Type, request content: Request, debug: HTTPDebugOptions = .default, completionHandler: @escaping (Result<Response>) -> Void)
         where T: HTTPProtocol,
         T: HTTPDataRequestProcotol,
         T: HTTPDataResponseProtocol,
         Request == T.RequestType,
         Response == T.ResponseType {
             
+            
+            let object = type.init(request: content)
+            stack.onNext(object.URL.URLString)
+            
+            Observable.just(object)
+                .flatMap { $0.serialize(content) }
+                .do( onNext: { _ in Log.message(.debug, message: "\(type(of: object)) Request: \(object.request)") } )
+                .map { try object.cryptoType.encryptMethod()($0) }
+                .map { $0.toBase64String() }
+                .map { ["Param" : $0] }
+                .debugWithLogger(.debug, message: "Request content")
+                .map { try JSONSerialization.data(withJSONObject: $0, options: []) }
+                .map { data -> URLRequest in
+                    guard let url = URL(string: object.URL.URLString) else {
+                        throw HTTPError.invalidURL
+                    }
+                    
+                    var request = URLRequest(url: url)
+                    request.httpBody = data
+                    request.httpMethod = "POST"
+                    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                    return request
+                }
+                .flatMap { [unowned self, object] request -> Observable<Result<Response>> in
+                    URLSession.shared.rx.data(request: request)
+                        .takeUntil(self.stack.asObservable().filter { $0 == object.URL.URLString })
+                        .timeout(object.timeoutInterval, scheduler: ConcurrentMainScheduler.instance)
+                        .map { response -> String in
+                            guard let result = String(data: response, encoding: .utf8), result.characters.count > 0
+                                else { throw HTTPError.cannotConvertDataToString }
+                            //                            Log.message(.debug, message: "RAW RESPONSE: \(result)")
+                            return result
+                        }
+                        .map { try $0.base64ToNSData() }
+                        .map { try object.cryptoType.decryptMethod()($0) }
+                        .map { try object.deserialize(origin: object.request, data: $0) }
+                        .map { .success($0) }
+                        .catchError { error -> Observable<Result<Response>> in
+                            if (error as NSError).code == -1009 { return Observable.error(RxError.timeout) }
+                            return Observable.error(error)
+                        }
+                        .do(
+                            onNext: { if debug.contains(.default) { Log.message(.info, message: "\(type(of: object)) Response: \($0)") } },
+                            onError: { Log.message(.error, message: "\(type(of: object)) Response: \($0)") }
+                        )
+                        .catchError { Observable.just(.failure($0)) }
+                }
+                .observeOn(MainScheduler.instance)
+                .subscribe(onNext: { completionHandler($0) })
+                .addDisposableTo(bag)
+            
+    }
+    
+    /*
+    func request<T, Request, Response>(type: T.Type, request content: Request, completionHandler: @escaping (Result<Response>) -> Void)
+        where T: HTTPProtocol,
+        T: HTTPDataRequestProcotol,
+        T: HTTPDataResponseProtocol,
+        Request == T.RequestType,
+        Response == T.ResponseType {
             
             let object = type.init(request: content)
             stack.onNext(object.URL.URLString)
@@ -256,7 +316,7 @@ class HTTPManager {
         
     }
     
-    /*
+    
     func request<T, Request, Response>(type: T.Type, request content: Request, completionHandler: @escaping (Result<Response>) -> Void)
         where T: HTTPProtocol,
         T: HTTPGoogleRequestProtocol,
