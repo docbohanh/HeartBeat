@@ -22,6 +22,8 @@
 		13E55B9E1E6520A30017DEC2 /* HeaderResultTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E55B9D1E6520A30017DEC2 /* HeaderResultTableView.swift */; };
 		13E55BA51E655A0F0017DEC2 /* ResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E55BA31E655A0F0017DEC2 /* ResultTableViewCell.swift */; };
 		13E55BA61E655A0F0017DEC2 /* SeparatorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E55BA41E655A0F0017DEC2 /* SeparatorTableViewCell.swift */; };
+		13E55BC81E657FAF0017DEC2 /* MXParallaxHeader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13E55BC71E657FAF0017DEC2 /* MXParallaxHeader.framework */; };
+		13E55BC91E657FAF0017DEC2 /* MXParallaxHeader.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 13E55BC71E657FAF0017DEC2 /* MXParallaxHeader.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		13EB4A5C1E62A6E400DFAC5F /* GeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13EB4A301E62A6E400DFAC5F /* GeneralViewController.swift */; };
 		13EB4A621E62A6E400DFAC5F /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13EB4A381E62A6E400DFAC5F /* Article.swift */; };
 		13EB4A631E62A6E400DFAC5F /* RealmArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13EB4A391E62A6E400DFAC5F /* RealmArticle.swift */; };
@@ -118,6 +120,7 @@
 				13EB4A9E1E62A71800DFAC5F /* SnapKit.framework in Embed Frameworks */,
 				13EB4A881E62A71800DFAC5F /* CleanroomASL.framework in Embed Frameworks */,
 				13EB4A961E62A71800DFAC5F /* Reachability.framework in Embed Frameworks */,
+				13E55BC91E657FAF0017DEC2 /* MXParallaxHeader.framework in Embed Frameworks */,
 				13EB4ABC1E62AA4400DFAC5F /* RxCocoa.framework in Embed Frameworks */,
 				13EB4A8E1E62A71800DFAC5F /* DZNEmptyDataSet.framework in Embed Frameworks */,
 				13EB4AB01E62A8C100DFAC5F /* Crypto.framework in Embed Frameworks */,
@@ -152,6 +155,7 @@
 		13E55B9D1E6520A30017DEC2 /* HeaderResultTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderResultTableView.swift; sourceTree = "<group>"; };
 		13E55BA31E655A0F0017DEC2 /* ResultTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultTableViewCell.swift; sourceTree = "<group>"; };
 		13E55BA41E655A0F0017DEC2 /* SeparatorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeparatorTableViewCell.swift; sourceTree = "<group>"; };
+		13E55BC71E657FAF0017DEC2 /* MXParallaxHeader.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MXParallaxHeader.framework; path = ManUNews/Libraries/MXParallaxHeader.framework; sourceTree = "<group>"; };
 		13EB4A271E62A64600DFAC5F /* ManUNews-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ManUNews-Bridging-Header.h"; sourceTree = "<group>"; };
 		13EB4A301E62A6E400DFAC5F /* GeneralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralViewController.swift; sourceTree = "<group>"; };
 		13EB4A381E62A6E400DFAC5F /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
@@ -225,6 +229,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13EB4ABB1E62AA4400DFAC5F /* RxCocoa.framework in Frameworks */,
+				13E55BC81E657FAF0017DEC2 /* MXParallaxHeader.framework in Frameworks */,
 				13EB4A971E62A71800DFAC5F /* Realm.framework in Frameworks */,
 				13EB4A8B1E62A71800DFAC5F /* CocoaAsyncSocket.framework in Frameworks */,
 				13EB4A911E62A71800DFAC5F /* PagingMenuController.framework in Frameworks */,
@@ -446,6 +451,7 @@
 		13EB4AA21E62A71E00DFAC5F /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				13E55BC71E657FAF0017DEC2 /* MXParallaxHeader.framework */,
 				13EB4AD81E62B0B100DFAC5F /* MGSwipeTableCell.framework */,
 				13EB4ABD1E62AA7400DFAC5F /* RxExtensions.framework */,
 				13EB4ABA1E62AA4400DFAC5F /* RxCocoa.framework */,

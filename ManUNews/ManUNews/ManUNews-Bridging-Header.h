@@ -3,3 +3,7 @@
 //
 
 #import "FUISegmentedControl.h"
+
+#import <MXParallaxHeader/MXParallaxHeader.h>
+#import <MXParallaxHeader/MXScrollView.h>
+#import <MXParallaxHeader/MXScrollViewController.h>

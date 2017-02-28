@@ -9,6 +9,7 @@
 import UIKit
 import SnapKit
 import PHExtensions
+import MXParallaxHeader
 
 class ResultViewController: GeneralViewController {
     fileprivate enum Size: CGFloat {
@@ -16,7 +17,7 @@ class ResultViewController: GeneralViewController {
     }
     
     /// VIEW
-    var table: UITableView!
+    var tableView: UITableView!
     
     var articleList: [Int] = []
     
@@ -105,6 +106,14 @@ extension ResultViewController: UITableViewDelegate {
     }
 }
 
+// MARK: - Parallax header delegate
+extension ResultViewController: MXParallaxHeaderDelegate {
+    
+    func parallaxHeaderDidScroll(_ parallaxHeader: MXParallaxHeader) {
+        NSLog("progress %f", parallaxHeader.progress)
+    }
+}
+
 //------------------------------
 //MARK: SETUP VIEW
 //------------------------------
@@ -112,6 +121,17 @@ extension ResultViewController {
     func setupAllSubviews() {
         view.backgroundColor = UIColor.white
         title = "Kết quả"
+        
+        tableView = setupTableView()
+        // Parallax Header
+//        tableView.parallaxHeader.view = headerView // You can set the parallax header view from the floating view
+        tableView.parallaxHeader.height = 300
+        tableView.parallaxHeader.mode = .fill
+        tableView.parallaxHeader.minimumHeight = 20
+        
+        tableView.parallaxHeader.delegate = self
+        
+        view.addSubview(tableView)
         
     }
     
