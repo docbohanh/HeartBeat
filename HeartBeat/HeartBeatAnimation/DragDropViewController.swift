@@ -40,6 +40,8 @@ class DragDropViewController: UIViewController {
         
         self.dragView.layer.cornerRadius = self.dragView.bounds.size.height / 2
         
+        self.dragViewX.constant = 100
+        
         self.goalView.layer.cornerRadius = self.goalView.bounds.size.height / 2
         self.goalView.layer.borderWidth = 2
         
@@ -58,11 +60,10 @@ class DragDropViewController: UIViewController {
     }
     
     func boundsChanged() {
-        self.returnToStartLocationAnimated(animated: false)
+//        self.returnToStartLocationAnimated(animated: false)
         
-        self.dragAreaView.bringSubview(toFront: self.dragView)
         self.dragAreaView.bringSubview(toFront: self.goalView)
-        
+        self.dragAreaView.bringSubview(toFront: self.dragView)
         self.view.layoutIfNeeded()
         
     }
@@ -81,7 +82,8 @@ class DragDropViewController: UIViewController {
                 addHeartBeatAnimation(for: self.dragView)
             }
             else {
-                self.returnToStartLocationAnimated(animated: true)
+                self.dragView.layer.removeAllAnimations()
+//                self.returnToStartLocationAnimated(animated: true)
             }
         }
     }
