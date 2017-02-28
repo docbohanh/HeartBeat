@@ -11,8 +11,7 @@ class DragDropViewController: UIViewController {
     
     @IBOutlet weak var dragViewX: NSLayoutConstraint!
     @IBOutlet weak var dragViewY: NSLayoutConstraint!
-    
-    
+        
     @IBOutlet var panGesture: UIPanGestureRecognizer!
     
     var initialDragViewY: CGFloat = 0.0
@@ -72,6 +71,15 @@ class DragDropViewController: UIViewController {
     }
     
     @IBAction func panAction() {
+        switch self.panGesture.state {
+        case .began:
+            addHeartBeatAnimation(for: self.dragView)
+        case .changed:
+            self.moveObject()
+        default:
+            break
+        }
+        /*
         if self.panGesture.state == .changed {
             self.moveObject() 
         }
@@ -80,11 +88,12 @@ class DragDropViewController: UIViewController {
                 addHeartBeatAnimation(for: self.dragView)
             }
             else {
-                self.dragView.layer.removeAllAnimations()
-//                self.returnToStartLocationAnimated(animated: true)
+                self.returnToStartLocationAnimated(animated: true)
             }
         }
+        */
     }
+    
     
     // MARK: UI Updates
 
