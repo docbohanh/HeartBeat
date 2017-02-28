@@ -9,15 +9,13 @@
 import UIKit
 import PHExtensions
 
-class ResultTableViewCell: UITableViewCell {
+class ResultTableViewCell: SeparatorTableViewCell {
     
     static let resultIdentifier = "ResultTableViewCell"
     
     enum Size: CGFloat {
         case padding15 = 15, padding10 = 10, label = 20, logo = 24, icon = 12, padding7 = 7, padding5 = 5, cell = 30
     }
-    
-    var seperator: UIView!
     
     var orderIcon: UIImageView!
     var order: UILabel!
@@ -37,34 +35,28 @@ class ResultTableViewCell: UITableViewCell {
         super.init(coder: aDecoder)
         setup()
     }
-    
-    
+        
     override func layoutSubviews() {
         super.layoutSubviews()
         
         contentView.frame = bounds
-        seperator.frame = CGRect(x: 0, y: bounds.height - onePixel(), width: bounds.width, height: onePixel())
         
         let w = Utility.shared.widthForView(
             text: "0",
             font:  UIFont(name: FontType.latoRegular.., size: FontSize.small++)!,
-            height: Size.cell..)
-        let h = Utility.shared.heightForView(
-            text: "0",
-            font: UIFont(name: FontType.latoRegular.., size: FontSize.small++)!,
-            width: Size.cell..)
+            height: bounds.height)
         
         orderIcon.frame = CGRect(
-            x: Size.padding5..,
+            x: Size.padding7..,
             y: (bounds.height - Size.icon..) / 2,
             width: Size.icon..,
             height: Size.icon..)
         
         order.frame = CGRect(
             x: orderIcon.frame.maxX + Size.padding5..,
-            y: (bounds.height - h) / 2,
+            y: 0,
             width: 2 * w,
-            height: h)
+            height: bounds.height)
         
         logo.frame = CGRect(
             x: order.frame.maxX + Size.padding5..,
@@ -72,8 +64,35 @@ class ResultTableViewCell: UITableViewCell {
             width: Size.logo..,
             height: Size.logo..)
         
+        score.frame = CGRect(
+            x: bounds.width - Size.padding7.. - 3 * w,
+            y: 0,
+            width: 3 * w,
+            height: bounds.height)
         
+        difference.frame = CGRect(
+            x: score.frame.minX - Size.padding10..,
+            y: 0,
+            width: 3 * w,
+            height: bounds.height)
         
+        goals.frame = CGRect(
+            x: difference.frame.minX - Size.padding10..,
+            y: 0,
+            width: 5 * w,
+            height: bounds.height)
+        
+        matched.frame = CGRect(
+            x: goals.frame.minX - Size.padding10..,
+            y: 0,
+            width: 2 * w,
+            height: bounds.height)
+        
+        teamName.frame = CGRect(
+            x: logo.frame.maxX + Size.padding5..,
+            y: 0,
+            width: matched.frame.minX - logo.frame.maxX - Size.padding5.. * 2,
+            height: bounds.height)
         
     }
     
@@ -83,8 +102,6 @@ extension ResultTableViewCell {
     
     func setup() {
         
-        seperator = setupView()
-        
         orderIcon = setupImageView()
         order = setupLabel(alignment: .center, textColor: .darkGray)
         logo = setupImageView()
@@ -92,17 +109,10 @@ extension ResultTableViewCell {
         matched = setupLabel(alignment: .center, textColor: .gray)
         goals = setupLabel(alignment: .center, textColor: .gray)
         difference = setupLabel(alignment: .center, textColor: .gray)
-        score = setupLabel(alignment: .center, textColor: .darkGray)
+        score = setupLabel(alignment: .center, textColor: .darkGray, fontName: FontType.latoSemibold..)
         
         [orderIcon,order,logo,teamName,matched,goals,difference,score].forEach { contentView.addSubview($0) }
         
-        contentView.addSubview(seperator)
-    }
-    
-    func setupView() -> UIView {
-        let view = UIView()
-        view.backgroundColor = UIColor.General.separator
-        return view
     }
     
     func setupImageView() -> UIImageView {
@@ -113,13 +123,13 @@ extension ResultTableViewCell {
         return icon
     }
     
-    
-    func setupLabel(alignment: NSTextAlignment, textColor: UIColor) -> UILabel {
-        let textLabel = UILabel()
-        textLabel.textAlignment = alignment
-        textLabel.font = UIFont(name: FontType.latoRegular.., size: FontSize.small++)
-        textLabel.textColor = textColor
-        textLabel.numberOfLines = 1
-        return textLabel
+    func setupLabel(alignment: NSTextAlignment, textColor: UIColor, fontName: String = FontType.latoRegular..) -> UILabel {
+        let label = UILabel()
+        label.textAlignment = alignment
+        label.font = UIFont(name: fontName, size: FontSize.small++)
+        label.textColor = textColor
+        label.numberOfLines = 1
+        label.contentMode = .center
+        return label
     }
 }

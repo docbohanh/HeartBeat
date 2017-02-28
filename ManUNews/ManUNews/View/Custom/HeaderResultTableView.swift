@@ -12,13 +12,9 @@ import PHExtensions
 class HeaderResultTableView: UIView {
     
     enum Size: CGFloat {
-        case padding15 = 15, padding10 = 10, label = 16, Image = 20, button = 36
+        case padding7 = 7, padding10 = 10
     }
     
-    var orderIcon: UIImageView!
-    var order: UILabel!
-    var logo: UIImageView!
-    var teamName: UILabel!
     var matched: UILabel!
     var goals: UILabel!
     var difference: UILabel!
@@ -37,26 +33,54 @@ class HeaderResultTableView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
+        let w = Utility.shared.widthForView(
+            text: "0",
+            font:  UIFont(name: FontType.latoRegular.., size: FontSize.small++)!,
+            height: bounds.height)
+        
+        score.frame = CGRect(
+            x: bounds.width - Size.padding7.. - 3 * w,
+            y: 0,
+            width: 3 * w,
+            height: bounds.height)
+        
+        difference.frame = CGRect(
+            x: score.frame.minX - Size.padding10..,
+            y: 0,
+            width: 3 * w,
+            height: bounds.height)
+        
+        goals.frame = CGRect(
+            x: difference.frame.minX - Size.padding10..,
+            y: 0,
+            width: 5 * w,
+            height: bounds.height)
+        
+        matched.frame = CGRect(
+            x: goals.frame.minX - Size.padding10..,
+            y: 0,
+            width: 2 * w,
+            height: bounds.height)
     }
     
     func setup() {
-        
+        matched = setupLabel(text: "P")
+        goals = setupLabel(text: "Goals")
+        difference = setupLabel(text: "GD")
+        score = setupLabel(text: "Pts.")
+        [matched,goals,difference,score].forEach { addSubview($0) }
     }
     
     
-    func setupLabel(alignment: NSTextAlignment, textColor: UIColor) -> UILabel {
+    func setupLabel(text: String) -> UILabel {
         let textLabel = UILabel()
-        textLabel.textAlignment = alignment
-        textLabel.font = UIFont(name: FontType.latoRegular.., size: FontSize.normal--)
-        textLabel.textColor = textColor
+        textLabel.textAlignment = .center
+        textLabel.font = UIFont(name: FontType.latoSemibold.., size: FontSize.normal--)
+        textLabel.textColor = .darkGray
         textLabel.numberOfLines = 1
+        textLabel.text = text
         return textLabel
     }
     
-    func setupImageView() -> UIImageView {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        return imageView
-    }
     
 }
