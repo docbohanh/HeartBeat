@@ -12,13 +12,19 @@ import PHExtensions
 class HeaderResultTableView: UIView {
     
     enum Size: CGFloat {
-        case padding7 = 7, padding10 = 10
+        case padding7 = 7, padding10 = 10, padding15 = 15
     }
     
     var matched: UILabel!
     var goals: UILabel!
     var difference: UILabel!
     var score: UILabel!
+    
+    var seperator: UIView! = {
+        var view = UIView()
+        view.backgroundColor = UIColor.lightGray
+        return view
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -45,22 +51,28 @@ class HeaderResultTableView: UIView {
             height: bounds.height)
         
         difference.frame = CGRect(
-            x: score.frame.minX - Size.padding10..,
+            x: score.frame.minX - Size.padding10.. - 3 * w,
             y: 0,
             width: 3 * w,
             height: bounds.height)
         
         goals.frame = CGRect(
-            x: difference.frame.minX - Size.padding10..,
+            x: difference.frame.minX - Size.padding10.. - 5 * w,
             y: 0,
             width: 5 * w,
             height: bounds.height)
         
         matched.frame = CGRect(
-            x: goals.frame.minX - Size.padding10..,
+            x: goals.frame.minX - Size.padding10.. - 2 * w,
             y: 0,
             width: 2 * w,
             height: bounds.height)
+        
+        seperator.frame = CGRect(
+            x: Size.padding15..,
+            y: bounds.height - onePixel(),
+            width: bounds.width - Size.padding15..,
+            height: onePixel())
     }
     
     func setup() {
@@ -68,7 +80,7 @@ class HeaderResultTableView: UIView {
         goals = setupLabel(text: "Goals")
         difference = setupLabel(text: "GD")
         score = setupLabel(text: "Pts.")
-        [matched,goals,difference,score].forEach { addSubview($0) }
+        [matched,goals,difference,score,seperator].forEach { addSubview($0) }
     }
     
     

@@ -19,7 +19,7 @@ class ResultViewController: GeneralViewController {
     /// VIEW
     var tableView: UITableView!
     
-    var articleList: [Int] = []
+    var results: [Int] = [1,2,3,4,5]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,17 +66,24 @@ extension ResultViewController {
 extension ResultViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return articleList.count
+        return results.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: ResultTableViewCell.resultIdentifier, for: indexPath) as! ResultTableViewCell
+        
+        configCell(for: cell, atIndexPath: indexPath)
+        
+        return cell
     }
     
-    func configCell() {
+    func configCell(for cell: ResultTableViewCell, atIndexPath indexPath: IndexPath) {
         
-        
+        cell.seperatorRightPadding = 0
+        cell.seperatorStyle = (indexPath.row == results.count - 1) ? .padding(0) : .padding(15)
+                
+        cell.order.text = results[indexPath.row].description
     }
 }
 
@@ -95,14 +102,6 @@ extension ResultViewController: UITableViewDelegate {
         return Size.cell..
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return Size.cell..
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = setupHeaderView()
-        return view
-    }
     
 }
 
@@ -123,13 +122,6 @@ extension ResultViewController {
         title = "Kết quả"
         
         tableView = setupTableView()
-        // Parallax Header
-//        tableView.parallaxHeader.view = headerView // You can set the parallax header view from the floating view
-        tableView.parallaxHeader.height = 300
-        tableView.parallaxHeader.mode = .fill
-        tableView.parallaxHeader.minimumHeight = 20
-        
-        tableView.parallaxHeader.delegate = self
         
         view.addSubview(tableView)
         
@@ -142,12 +134,21 @@ extension ResultViewController {
     }
     
     func setupTableView() -> UITableView {
-        let table = UITableView(frame: CGRect.zero, style: .plain)
-        table.delegate = self
-        table.dataSource = self
-        table.separatorStyle = .none
+        let tableView = UITableView(frame: CGRect.zero, style: .plain)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.separatorStyle = .none
+        tableView.register(ResultTableViewCell.self, forCellReuseIdentifier: ResultTableViewCell.resultIdentifier)
         
-        return table
+        let headerView = setupHeaderView()
+        tableView.parallaxHeader.view = headerView // You can set the parallax header view from the floating view
+        tableView.parallaxHeader.height =  Size.cell..
+        tableView.parallaxHeader.mode = .fill
+        tableView.parallaxHeader.minimumHeight = 64
+        
+        tableView.parallaxHeader.delegate = self
+        
+        return tableView
     }
     
     func setupHeaderView() -> HeaderResultTableView {

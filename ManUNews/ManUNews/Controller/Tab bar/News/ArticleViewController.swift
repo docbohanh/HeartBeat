@@ -11,6 +11,7 @@ import SnapKit
 import PHExtensions
 import CleanroomLogger
 import MGSwipeTableCell
+import DZNEmptyDataSet
 
 class ArticleViewController: GeneralViewController {
     fileprivate enum Size: CGFloat {
@@ -70,7 +71,6 @@ extension ArticleViewController {
         
         DataManager.shared.getArticle()
         
-        
     }
 }
 
@@ -79,11 +79,18 @@ extension ArticleViewController {
 //------------------------------
 extension ArticleViewController: DataManagerDelagate {
     func downloadArticle(status: Bool, articles: [Article]) {
-        guard status else { HUD.showMessage("Chưa có tin tức mới", position: .center); return }
+        
+        guard status else {
+            HUD.showMessage("Chưa có tin tức mới", position: .center)
+            return
+        }
+        
+        HUD.dismissHUD()
         articles.forEach { articleList.insert($0, at: 0) }
         tableView.reloadData()
         
     }
+    
 }
 
 //------------------------------
@@ -192,6 +199,34 @@ extension ArticleViewController: UITableViewDelegate {
     }
 }
 
+//-------------------------------------------
+// - MARK: - TABLE DELEGATE
+//-------------------------------------------
+extension ArticleViewController: DZNEmptyDataSetSource {
+    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+        return Icon.Article.news
+    }
+    
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        let text = "Chưa có tin tức nào được lưu"
+        let attribute = [
+            NSFontAttributeName: UIFont(name: FontType.latoLight.., size: FontSize.normal--)!,
+            NSForegroundColorAttributeName: UIColor.gray
+        ]
+        return NSAttributedString(string: text, attributes: attribute)
+    }
+}
+
+//-------------------------------------------
+// - MARK: - TABLE DELEGATE
+//-------------------------------------------
+extension ArticleViewController: DZNEmptyDataSetDelegate {
+    func emptyDataSet(_ scrollView: UIScrollView!, didTap view: UIView!) {
+        HUD.showHUD("Đang xử lý...") {
+             DataManager.shared.getArticle()
+        }
+    }
+}
 
 //------------------------------
 //MARK: SETUP VIEW
@@ -220,6 +255,8 @@ extension ArticleViewController {
         let table = UITableView(frame: CGRect.zero, style: .plain)
         table.delegate = self
         table.dataSource = self
+        table.emptyDataSetSource = self
+        table.emptyDataSetDelegate = self
         table.separatorStyle = .none
         table.register(ArticleTableViewCell.self, forCellReuseIdentifier: ArticleTableViewCell.articleIdentifier)
         return table
