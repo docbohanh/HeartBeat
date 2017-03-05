@@ -14,6 +14,7 @@
 		1371294E1E63176000842CC1 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1371294D1E63176000842CC1 /* ProfileViewController.swift */; };
 		137129501E63176B00842CC1 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1371294F1E63176B00842CC1 /* ScheduleViewController.swift */; };
 		137129521E63185200842CC1 /* ComunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137129511E63185200842CC1 /* ComunityViewController.swift */; };
+		13B84B4C1E6ACEF0006C72E0 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B84B4B1E6ACEF0006C72E0 /* Team.swift */; };
 		13C14F8E1E62A50F004A63F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C14F8D1E62A50F004A63F9 /* AppDelegate.swift */; };
 		13C14F901E62A50F004A63F9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C14F8F1E62A50F004A63F9 /* ViewController.swift */; };
 		13C14F931E62A50F004A63F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13C14F911E62A50F004A63F9 /* Main.storyboard */; };
@@ -146,6 +147,7 @@
 		1371294D1E63176000842CC1 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		1371294F1E63176B00842CC1 /* ScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		137129511E63185200842CC1 /* ComunityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComunityViewController.swift; sourceTree = "<group>"; };
+		13B84B4B1E6ACEF0006C72E0 /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		13C14F8A1E62A50F004A63F9 /* ManUNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ManUNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13C14F8D1E62A50F004A63F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		13C14F8F1E62A50F004A63F9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -382,6 +384,7 @@
 				13EB4A381E62A6E400DFAC5F /* Article.swift */,
 				13EB4A391E62A6E400DFAC5F /* RealmArticle.swift */,
 				13EB4A3A1E62A6E400DFAC5F /* Segmented.swift */,
+				13B84B4B1E6ACEF0006C72E0 /* Team.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -739,6 +742,7 @@
 				13EB4AC31E62AAE600DFAC5F /* Error.swift in Sources */,
 				1371294C1E63172100842CC1 /* ResultViewController.swift in Sources */,
 				13EB4A761E62A6E400DFAC5F /* UIImage+FlatUI.m in Sources */,
+				13B84B4C1E6ACEF0006C72E0 /* Team.swift in Sources */,
 				13EB4A641E62A6E400DFAC5F /* Segmented.swift in Sources */,
 				13C14F8E1E62A50F004A63F9 /* AppDelegate.swift in Sources */,
 				13EB4A651E62A6E400DFAC5F /* AppData.swift in Sources */,

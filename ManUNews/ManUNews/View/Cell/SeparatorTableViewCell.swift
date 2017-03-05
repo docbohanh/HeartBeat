@@ -33,7 +33,7 @@ class SeparatorTableViewCell: MGSwipeTableCell {
     
     var seperator: UIView! = {
         var view = UIView()
-        view.backgroundColor = UIColor.lightGray
+        view.backgroundColor = UIColor.Misc.seperator
         return view
     }()
     

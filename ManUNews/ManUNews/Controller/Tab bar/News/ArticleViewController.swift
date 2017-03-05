@@ -125,7 +125,7 @@ extension ArticleViewController: UITableViewDataSource {
         cell.detailTextLabel?.text = article.description
         //        cell.labelTime.text = dateFormatter.string(from: Date(timeIntervalSince1970: article.time))
         cell.labelTime.text = article.publishDate //Utility.shared.stringFromPastTimeToText(article.time)
-        cell.imageView?.image = Icon.Article.news
+        cell.imageView?.image = Icon.Article.newsEmpty
         cell.countView.countLabel.text = "5"
         //        if article.commentCount == 0 {
         //            cell.countView.removeFromSuperview()
@@ -204,7 +204,7 @@ extension ArticleViewController: UITableViewDelegate {
 //-------------------------------------------
 extension ArticleViewController: DZNEmptyDataSetSource {
     func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
-        return Icon.Article.news
+        return Icon.Article.newsEmpty
     }
     
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {

@@ -79,6 +79,8 @@ extension UIColor {
      Màu nền cho các Table
      */
     struct Table {
+        
+        static var titleHeader = UIColor(rgba: "647d91")
         static var tableEmpty = UIColor(rgba: "f5f7fa")
         static var tablePlain = UIColor.white
         static var tableGroup = UIColor(rgba: "#EFEFEF")

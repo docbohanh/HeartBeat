@@ -66,7 +66,12 @@ struct Icon {
     
     struct Article {
         static let markAsRead: UIImage = UIImage(named: "markAsRead")!
-        static let news: UIImage = UIImage(named: "News")!
+        static let newsEmpty: UIImage = UIImage(named: "News")!
+        
+        static let orderNormal = UIImage(named: "order_normal")!
+        static let orderAscend = UIImage(named: "order_plus")!
+        static let orderDescend = UIImage(named: "order_less")!
+        
     }
     
     struct General {
@@ -74,9 +79,18 @@ struct Icon {
     }
     
     struct Home {
-        static var ArrowRight: UIImage { return UIImage(named: "ArrowRight")! }
-        
-        static var ArrowLeft: UIImage { return UIImage(named: "ArrowLeft")! }
+        static var ArrowRight = UIImage(named: "ArrowRight")!        
+        static var ArrowLeft = UIImage(named: "ArrowLeft")!
+    }
+    
+    struct Logo {
+        static var chelsea = UIImage(named: "Chelsea")!
+        static var arsenal = UIImage(named: "Arsenal")!
+        static var liverpool = UIImage(named: "Liverpool")!
+        static var manCity = UIImage(named: "ManCity")!
+        static var tottenham = UIImage(named: "Tottenham")!
+        static var manu = UIImage(named: "ManU")!
+        static var everton = UIImage(named: "Everton")!
     }
 
 }

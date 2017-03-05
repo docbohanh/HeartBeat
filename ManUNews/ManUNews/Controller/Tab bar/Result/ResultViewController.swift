@@ -19,7 +19,64 @@ class ResultViewController: GeneralViewController {
     /// VIEW
     var tableView: UITableView!
     
-    var results: [Int] = [1,2,3,4,5]
+    var results: [Team] = [Team(orderType: .normal,
+                                order: 1,
+                                logo: Icon.Logo.chelsea,
+                                teamName: "Chelsea",
+                                matched: 26,
+                                goals: "55:19",
+                                difference: 36,
+                                score: 63),
+                           Team(orderType: .normal,
+                                order: 2,
+                                logo: Icon.Logo.tottenham,
+                                teamName: "Tottenham",
+                                matched: 26,
+                                goals: "55:18",
+                                difference: 32,
+                                score: 53),
+                           Team(orderType: .descend,
+                                order: 4,
+                                logo: Icon.Logo.manCity,
+                                teamName: "Manchester City",
+                                matched: 25,
+                                goals: "51:29",
+                                difference: 22,
+                                score: 52),
+                           Team(orderType: .descend,
+                                order: 5,
+                                logo: Icon.Logo.arsenal,
+                                teamName: "Arsenal",
+                                matched: 26,
+                                goals: "55:31",
+                                difference: 24,
+                                score: 50),
+                           Team(orderType: .ascend,
+                                order: 3,
+                                logo: Icon.Logo.liverpool,
+                                teamName: "Liverpool",
+                                matched: 27,
+                                goals: "58:34",
+                                difference: 24,
+                                score: 52),
+                           Team(orderType: .normal,
+                                order: 6,
+                                logo: Icon.Logo.manu,
+                                teamName: "Manchester Utd",
+                                matched: 25,
+                                goals: "38:21",
+                                difference: 17,
+                                score: 48),
+                           Team(orderType: .normal,
+                                order: 7,
+                                logo: Icon.Logo.everton,
+                                teamName: "Everton",
+                                matched: 26,
+                                goals: "42:27",
+                                difference: 15,
+                                score: 44)
+                           ]
+        .sorted { $0.order < $1.order }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,10 +137,26 @@ extension ResultViewController: UITableViewDataSource {
     
     func configCell(for cell: ResultTableViewCell, atIndexPath indexPath: IndexPath) {
         
-        cell.seperatorRightPadding = 0
-        cell.seperatorStyle = (indexPath.row == results.count - 1) ? .padding(0) : .padding(15)
-                
-        cell.order.text = results[indexPath.row].description
+        let team = results[indexPath.row]
+        
+        if indexPath.row == results.count - 1 {
+            cell.seperatorRightPadding = 0
+            cell.seperatorStyle = .padding(0)
+            
+        } else {
+            cell.seperatorRightPadding = 10
+            cell.seperatorStyle = .padding(10)
+        }
+        
+        cell.orderIcon.image = team.orderType.icon
+        cell.order.text = String(team.order)
+        cell.logo.image = team.logo
+        cell.teamName.text = team.teamName
+        cell.matched.text = String(team.matched)
+        cell.goals.text = team.goals
+        cell.difference.text = String(team.difference)
+        cell.score.text = String(team.score)
+        
     }
 }
 

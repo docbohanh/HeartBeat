@@ -22,7 +22,7 @@ class HeaderResultTableView: UIView {
     
     var seperator: UIView! = {
         var view = UIView()
-        view.backgroundColor = UIColor.lightGray
+        view.backgroundColor = UIColor.Misc.seperator
         return view
     }()
     
@@ -69,9 +69,9 @@ class HeaderResultTableView: UIView {
             height: bounds.height)
         
         seperator.frame = CGRect(
-            x: Size.padding15..,
+            x: 0,
             y: bounds.height - onePixel(),
-            width: bounds.width - Size.padding15..,
+            width: bounds.width,
             height: onePixel())
     }
     
@@ -88,7 +88,7 @@ class HeaderResultTableView: UIView {
         let textLabel = UILabel()
         textLabel.textAlignment = .center
         textLabel.font = UIFont(name: FontType.latoSemibold.., size: FontSize.normal--)
-        textLabel.textColor = .darkGray
+        textLabel.textColor = UIColor.Table.titleHeader
         textLabel.numberOfLines = 1
         textLabel.text = text
         return textLabel

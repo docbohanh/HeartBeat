@@ -14,7 +14,7 @@ class ResultTableViewCell: SeparatorTableViewCell {
     static let resultIdentifier = "ResultTableViewCell"
     
     enum Size: CGFloat {
-        case padding15 = 15, padding10 = 10, label = 20, logo = 24, icon = 12, padding7 = 7, padding5 = 5, cell = 30
+        case padding15 = 15, padding10 = 10, label = 20, logo = 22, icon = 12, padding7 = 7, padding5 = 5, cell = 30
     }
     
     var orderIcon: UIImageView!
@@ -71,19 +71,19 @@ class ResultTableViewCell: SeparatorTableViewCell {
             height: bounds.height)
         
         difference.frame = CGRect(
-            x: score.frame.minX - Size.padding10..,
+            x: score.frame.minX - Size.padding10.. - 3 * w,
             y: 0,
             width: 3 * w,
             height: bounds.height)
         
         goals.frame = CGRect(
-            x: difference.frame.minX - Size.padding10..,
+            x: difference.frame.minX - Size.padding10.. - 5 * w,
             y: 0,
             width: 5 * w,
             height: bounds.height)
         
         matched.frame = CGRect(
-            x: goals.frame.minX - Size.padding10..,
+            x: goals.frame.minX - Size.padding10.. - 2 * w,
             y: 0,
             width: 2 * w,
             height: bounds.height)
