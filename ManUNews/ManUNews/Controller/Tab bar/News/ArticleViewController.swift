@@ -35,6 +35,15 @@ class ArticleViewController: GeneralViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        articleList = (1...5).map { x -> Article in
+            return Article(ID: UUID().uuidString,
+                           title: "MU đối mặt nhiều thử thách",
+                           articleLink: "",
+                           description: "Trận hòa Borunemouth mới đây mang đến tương lai màu xám cho \"Quỷ đỏ\".",
+                           publishDate: "",
+                           imageLink: "")
+        }
+        
         DataManager.shared.delegate = self
         
         setupAllSubviews()
@@ -44,6 +53,14 @@ class ArticleViewController: GeneralViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+//        guard DatabaseSupport.shared.getAllArticle().count == 0 else { return }
+//        HUD.showHUD() {
+//            DataManager.shared.getArticle()
+//        }
     }
     
     override func updateViewConstraints() {
@@ -81,11 +98,13 @@ extension ArticleViewController: DataManagerDelagate {
     func downloadArticle(status: Bool, articles: [Article]) {
         
         guard status else {
+            refreshControl.endRefreshing()
             HUD.showMessage("Chưa có tin tức mới", position: .center)
             return
         }
         
         HUD.dismissHUD()
+        refreshControl.endRefreshing()
         articles.forEach { articleList.insert($0, at: 0) }
         tableView.reloadData()
         
