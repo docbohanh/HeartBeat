@@ -25,6 +25,14 @@ struct Utility {
     static let shared = Utility()
     
     /**
+     Kiểm tra định dạng email
+     */
+    func validateEmail(_ email: String) -> Bool {
+        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
+        return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluate(with: email)
+    }
+    
+    /**
      Tính chiều rộng của text
      */
     func widthForView(text: String, font: UIFont, height: CGFloat) -> CGFloat {

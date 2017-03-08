@@ -182,7 +182,7 @@ extension ResultViewController: UITableViewDelegate {
 extension ResultViewController: MXParallaxHeaderDelegate {
     
     func parallaxHeaderDidScroll(_ parallaxHeader: MXParallaxHeader) {
-        NSLog("progress %f", parallaxHeader.progress)
+        
     }
 }
 
@@ -214,6 +214,7 @@ extension ResultViewController {
         tableView.register(ResultTableViewCell.self, forCellReuseIdentifier: ResultTableViewCell.resultIdentifier)
         
         let headerView = setupHeaderView()
+        
         tableView.parallaxHeader.view = headerView // You can set the parallax header view from the floating view
         tableView.parallaxHeader.height =  Size.cell..
         tableView.parallaxHeader.mode = .fill
