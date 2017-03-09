@@ -15,10 +15,7 @@ import MXParallaxHeader
 extension ProfileViewController: MXParallaxHeaderDelegate {
     
     func parallaxHeaderDidScroll(_ parallaxHeader: MXParallaxHeader) {
-        let scale = parallaxHeader.progress
-        print(scale)
-        headerView.viewImageShadow.transform = CGAffineTransform(scaleX: scale, y: scale)
-        headerView.avatarImage.transform = CGAffineTransform(scaleX: scale, y: scale)
+        
     }
 }
 

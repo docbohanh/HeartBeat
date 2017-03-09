@@ -88,6 +88,8 @@ struct Icon {
         static let orderAscend = UIImage(named: "order_plus")!
         static let orderDescend = UIImage(named: "order_less")!
         
+        static let liked = UIImage(named: "Liked")!
+        
     }
     
     struct General {

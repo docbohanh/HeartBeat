@@ -951,7 +951,7 @@
 				INFOPLIST_FILE = ManUNews/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.binhanh.mySwift;
+				PRODUCT_BUNDLE_IDENTIFIER = com.binhanh.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "ManUNews/ManUNews-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -975,7 +975,7 @@
 				INFOPLIST_FILE = ManUNews/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.binhanh.mySwift;
+				PRODUCT_BUNDLE_IDENTIFIER = com.binhanh.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "ManUNews/ManUNews-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;

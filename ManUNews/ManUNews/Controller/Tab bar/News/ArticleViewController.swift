@@ -12,10 +12,11 @@ import PHExtensions
 import CleanroomLogger
 import MGSwipeTableCell
 import DZNEmptyDataSet
+import RxSwift
 
 class ArticleViewController: GeneralViewController {
     fileprivate enum Size: CGFloat {
-        case padding15 = 15, padding5 = 5, padding10 = 10, button = 44, cell = 100
+        case padding15 = 15, padding5 = 5, padding10 = 10, button = 44, cell = 120
     }
     
     /// PRIVATE
@@ -57,10 +58,10 @@ class ArticleViewController: GeneralViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-//        guard DatabaseSupport.shared.getAllArticle().count == 0 else { return }
-//        HUD.showHUD() {
-//            DataManager.shared.getArticle()
-//        }
+        //        guard DatabaseSupport.shared.getAllArticle().count == 0 else { return }
+        //        HUD.showHUD() {
+        //            DataManager.shared.getArticle()
+        //        }
     }
     
     override func updateViewConstraints() {
@@ -87,6 +88,13 @@ extension ArticleViewController {
         }
         
         DataManager.shared.getArticle()
+        
+    }
+    
+    func liked(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.3) {
+            sender.isSelected = !sender.isSelected
+        }
         
     }
 }
@@ -117,6 +125,9 @@ extension ArticleViewController: DataManagerDelagate {
 //------------------------------
 extension ArticleViewController {
     
+    func request() {
+        let request: Observable<String> = Observable.just("https://api.github.com/users")
+    }
     
 }
 
@@ -139,23 +150,20 @@ extension ArticleViewController: UITableViewDataSource {
     
     func configCell(for cell: ArticleTableViewCell, with article: Article) {
         
-        cell.backgroundColor = UIColor.white
         cell.textLabel?.text = article.title
         cell.detailTextLabel?.text = article.description
         //        cell.labelTime.text = dateFormatter.string(from: Date(timeIntervalSince1970: article.time))
         cell.labelTime.text = article.publishDate //Utility.shared.stringFromPastTimeToText(article.time)
         cell.imageView?.image = Icon.Article.newsEmpty
         cell.countView.countLabel.text = "5"
-        //        if article.commentCount == 0 {
-        //            cell.countView.removeFromSuperview()
-        //        }
-        //
+        
         if arc4random_uniform(3) % 3 == 0 {
-            cell.markReadIcon.image = Icon.Article.markAsRead.tint(.main)
+            cell.countView.removeFromSuperview()
         }
         
-        guard let url = URL(string: article.imageLink) else { return }
+        cell.liked.addTarget(self, action: #selector(self.liked(_:)), for: .touchUpInside)
         
+        guard let url = URL(string: article.imageLink) else { return }
         
         let cache = URLCache.shared
         if let data = cache.cachedResponse(for: URLRequest(url: url)) {
@@ -207,15 +215,6 @@ extension ArticleViewController: UITableViewDelegate {
         return Size.cell..
     }
     
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 2 * onePixel()
-    }
-    
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let view = UIView()
-        view.backgroundColor = UIColor.General.separator
-        return view
-    }
 }
 
 //-------------------------------------------
@@ -242,7 +241,7 @@ extension ArticleViewController: DZNEmptyDataSetSource {
 extension ArticleViewController: DZNEmptyDataSetDelegate {
     func emptyDataSet(_ scrollView: UIScrollView!, didTap view: UIView!) {
         HUD.showHUD("Đang xử lý...") {
-             DataManager.shared.getArticle()
+            DataManager.shared.getArticle()
         }
     }
 }
@@ -252,7 +251,7 @@ extension ArticleViewController: DZNEmptyDataSetDelegate {
 //------------------------------
 extension ArticleViewController {
     func setupAllSubviews() {
-        view.backgroundColor = UIColor.General.separator
+        view.backgroundColor = UIColor.Table.tablePlain
         title = "Tin tức"
         
         tableView = setupTableView()
@@ -266,8 +265,10 @@ extension ArticleViewController {
     
     func setupAllConstraints() {
         tableView.snp.makeConstraints { (make) in
-            make.edges.equalTo(view)
+            make.leading.trailing.bottom.equalTo(view)
+            make.top.equalTo(view.snp.top).inset(5)
         }
+        
     }
     
     func setupTableView() -> UITableView {
@@ -277,6 +278,8 @@ extension ArticleViewController {
         table.emptyDataSetSource = self
         table.emptyDataSetDelegate = self
         table.separatorStyle = .none
+        table.backgroundColor = UIColor.Table.tablePlain
+        
         table.register(ArticleTableViewCell.self, forCellReuseIdentifier: ArticleTableViewCell.articleIdentifier)
         return table
     }
