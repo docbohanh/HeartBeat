@@ -36,15 +36,6 @@ class ArticleViewController: GeneralViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        articleList = (1...5).map { x -> Article in
-            return Article(ID: UUID().uuidString,
-                           title: "MU đối mặt nhiều thử thách",
-                           articleLink: "",
-                           description: "Trận hòa Borunemouth mới đây mang đến tương lai màu xám cho \"Quỷ đỏ\".",
-                           publishDate: "",
-                           imageLink: "")
-        }
-        
         DataManager.shared.delegate = self
         
         setupAllSubviews()
@@ -58,10 +49,10 @@ class ArticleViewController: GeneralViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        //        guard DatabaseSupport.shared.getAllArticle().count == 0 else { return }
-        //        HUD.showHUD() {
-        //            DataManager.shared.getArticle()
-        //        }
+                guard DatabaseSupport.shared.getAllArticle().count == 0 else { return }
+                HUD.showHUD() {
+                    DataManager.shared.getArticle()
+                }
     }
     
     override func updateViewConstraints() {
@@ -113,7 +104,9 @@ extension ArticleViewController: DataManagerDelagate {
         
         HUD.dismissHUD()
         refreshControl.endRefreshing()
+        
         articles.forEach { articleList.insert($0, at: 0) }
+        
         tableView.reloadData()
         
     }
@@ -125,9 +118,6 @@ extension ArticleViewController: DataManagerDelagate {
 //------------------------------
 extension ArticleViewController {
     
-    func request() {
-        let request: Observable<String> = Observable.just("https://api.github.com/users")
-    }
     
 }
 
@@ -151,9 +141,9 @@ extension ArticleViewController: UITableViewDataSource {
     func configCell(for cell: ArticleTableViewCell, with article: Article) {
         
         cell.textLabel?.text = article.title
-        cell.detailTextLabel?.text = article.description
+        cell.detailTextLabel?.text = article.content
         //        cell.labelTime.text = dateFormatter.string(from: Date(timeIntervalSince1970: article.time))
-        cell.labelTime.text = article.publishDate //Utility.shared.stringFromPastTimeToText(article.time)
+        cell.labelTime.text = "" //Utility.shared.stringFromPastTimeToText(article.time)
         cell.imageView?.image = Icon.Article.newsEmpty
         cell.countView.countLabel.text = "5"
         
@@ -163,7 +153,7 @@ extension ArticleViewController: UITableViewDataSource {
         
         cell.liked.addTarget(self, action: #selector(self.liked(_:)), for: .touchUpInside)
         
-        guard let url = URL(string: article.imageLink) else { return }
+        guard let url = URL(string: article.thumbnail) else { return }
         
         let cache = URLCache.shared
         if let data = cache.cachedResponse(for: URLRequest(url: url)) {

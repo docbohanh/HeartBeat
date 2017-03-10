@@ -10,13 +10,14 @@ import Foundation
 
 public struct HTTPAPI {
     
-    public static var API: String = "http://125.212.226.60:3401/api/"
+    public static var API: String = "app.linkit.vn/api/" //"http://125.212.226.60:3401/api/"
+    
     fileprivate static let GoogleDirectionAPI = "https://maps.googleapis.com/maps/api/directions/json?"
     fileprivate static let GoogleGeocodingAPI = "https://maps.googleapis.com/maps/api/geocode/json?"
     
     enum APIs: String, URLStringConvertible {
 
-        case getArticle = "GetArticle"
+        case getArticle = "FunnyGetArticle"
         case getResult = "GetCompetitionResult"
         
         var URLString: String {

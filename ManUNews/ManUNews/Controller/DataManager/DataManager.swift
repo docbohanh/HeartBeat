@@ -22,12 +22,14 @@ extension DataManager {
     
     internal func getArticle() {
         
-        let request = HTTPGetArticle.RequestType(pageNumber: 1, rowPerPage: 10)
+        let request = HTTPGetArticle.RequestType(pageIndex: 1, pageSize: 10, siteID: 5, isVideo: false)
         
         HTTPManager.shared.request(
             type: HTTPGetArticle.self,
             request: request,
-            debug: .all) { (result) in
+            debug: .all
+            
+        ) { (result) in
                 switch result {
                 case .success(let value):
                     Log.message(.debug, message: "Cập nhật thành công: \(value.articles.count) bản tin")

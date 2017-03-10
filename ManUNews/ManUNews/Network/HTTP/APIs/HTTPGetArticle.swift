@@ -32,12 +32,21 @@ public class HTTPGetArticle: HTTPProtocol, HTTPDataRequestProcotol, HTTPDataResp
     
     public class Request {
         
-        var pageNumber: Int
-        var rowPerPage: Int
+        var pageIndex: Int
+        var pageSize: Int
+        var siteID: Int
+        var isVideo: Bool
         
-        public init(pageNumber: Int, rowPerPage: Int) {
-            self.pageNumber = pageNumber
-            self.rowPerPage = rowPerPage
+        public init(
+            pageIndex: Int,
+            pageSize: Int,
+            siteID: Int,
+            isVideo: Bool) {
+            
+            self.pageIndex = pageIndex
+            self.pageSize = pageSize
+            self.siteID = siteID
+            self.isVideo = isVideo
         }
         
     }
@@ -49,8 +58,10 @@ public class HTTPGetArticle: HTTPProtocol, HTTPDataRequestProcotol, HTTPDataResp
     public func serialize(_ request: RequestType) -> Observable<Data> {
         var data = Data()
         
-        data.appendInt32(request.pageNumber)
-        data.appendInt32(request.rowPerPage)
+        data.appendInt32(request.pageIndex)
+        data.appendInt32(request.pageSize)
+        data.appendInt32(request.siteID)
+        data.appendBool(request.isVideo)
         
         return Observable.just(data)
     }
@@ -77,12 +88,12 @@ public class HTTPGetArticle: HTTPProtocol, HTTPDataRequestProcotol, HTTPDataResp
             let articles = try (0..<data.readInt16()).map { _ in
                 Article(
                     ID: try data.readString(),
+                    thumbnail: try data.readString(),
                     title: try data.readString(),
-                    articleLink: try data.readString(),
-                    description: try data.readString(),
-                    publishDate: try data.readString(),
-                    imageLink: try data.readString()
-                )
+                    content: try data.readString(),
+                    type: try Article.TypeContent(rawValue: data.readInt8()) ?? .unknown,
+                    siteID: try data.readInt32(),
+                    sourceLink: try data.readString())
             }
             
             return Response(articles: articles)

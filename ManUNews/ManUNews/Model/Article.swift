@@ -9,41 +9,49 @@
 import Foundation
 import Unbox
 
-struct Article: Unboxable {
+struct Article {
+    
+    enum TypeContent: Int {
+        case unknown = 0, html, image, youtube, video
+    }
     
     let ID: String
+    let thumbnail: String
     let title: String
-    let articleLink: String
-    let description: String
-    let publishDate: String
-    let imageLink: String
+    let content: String
+    let type: TypeContent
+    let siteID: Int
+    let sourceLink: String
     
     func convertToRealmType() -> RealmArticle {
         return RealmArticle(article: self)
     }
     
     init(ID: String,
+         thumbnail: String,
          title: String,
-         articleLink: String,
-         description: String,
-         publishDate: String,
-         imageLink: String) {
+         content: String,
+         type: TypeContent,
+         siteID: Int,
+         sourceLink: String) {
         
         self.ID = ID
         self.title = title
-        self.articleLink = articleLink
-        self.description = description
-        self.publishDate = publishDate
-        self.imageLink = imageLink
+        self.thumbnail = thumbnail
+        self.content = content
+        self.siteID = siteID
+        self.sourceLink = sourceLink
+        self.type = type
     }
-    
-    init(unboxer: Unboxer) throws {
-        self.ID          = try unboxer.unbox(key: "id")
-        self.title       = try unboxer.unbox(key: "title")
-        self.articleLink = unboxer.unbox(key: "articleLink") ?? ""
-        self.description = try unboxer.unbox(key: "description")
-        self.publishDate = unboxer.unbox(key: "publishDate") ?? ""
-        self.imageLink   = unboxer.unbox(key: "imageLink") ?? ""
-    }
+//    
+//    init(unboxer: Unboxer) throws {
+//        self.ID          = try unboxer.unbox(key: "id")
+//        self.title       = try unboxer.unbox(key: "title")
+//        self.thumbnail  = unboxer.unbox(key: "thumbnail") ?? ""
+//        self.content    = try unboxer.unbox(key: "content")
+//        self.type       = unboxer.unbox(key: "type") ?? .unknown
+//        self.siteID     = unboxer.unbox(key: "siteID") ?? 0
+//        self.sourceLink = unboxer.unbox(key: "sourceLink") ?? ""
+//    }
     
 }

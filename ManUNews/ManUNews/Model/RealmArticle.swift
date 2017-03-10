@@ -39,37 +39,42 @@ class RealmArticle: Object {
 //    }
     
     dynamic var ID: String = ""
+    dynamic var thumbnail: String = ""
     dynamic var title: String = ""
-    dynamic var articleLink: String = ""
-    dynamic var descrip: String = ""
-    dynamic var publishDate: String = ""
-    dynamic var imageLink: String = ""
+    dynamic var content: String = ""
+    dynamic var type: Int = 0
+    dynamic var siteID: Int = 0
+    dynamic var sourceLink: String = ""
     
     convenience init(
         ID: String,
+        thumbnail: String,
         title: String,
-        articleLink: String,
-        description: String,
-        publishDate: String,
-        imageLink: String) {
+        content: String,
+        type: Int,
+        siteID: Int,
+        sourceLink: String) {
         
         self.init()
+        
         self.ID = ID
-        self.title = title
-        self.articleLink = articleLink
-        self.descrip = description
-        self.publishDate = publishDate
-        self.imageLink = imageLink
+            self.thumbnail = thumbnail
+            self.title = title
+            self.content = content
+            self.type = type
+            self.siteID = siteID
+            self.sourceLink = sourceLink
     }
     
     convenience init(article: Article) {
         self.init()
         self.ID = article.ID
+        self.thumbnail = article.thumbnail
         self.title = article.title
-        self.articleLink = article.articleLink
-        self.descrip = article.description
-        self.publishDate = article.publishDate
-        self.imageLink = article.imageLink
+        self.content = article.content
+        self.type = article.type.rawValue
+        self.siteID = article.siteID
+        self.sourceLink = article.sourceLink
     }
     
     override static func primaryKey() -> String? {
@@ -79,11 +84,12 @@ class RealmArticle: Object {
     func convertToSyncType() -> Article {
         return Article(
             ID: self.ID,
+            thumbnail: self.thumbnail,
             title: self.title,
-            articleLink: self.articleLink,
-            description: self.descrip,
-            publishDate: self.publishDate,
-            imageLink: self.imageLink
+            content: self.content,
+            type: Article.TypeContent(rawValue: self.type) ?? .unknown,
+            siteID:  self.siteID,
+            sourceLink: self.sourceLink
         )
     }
     
