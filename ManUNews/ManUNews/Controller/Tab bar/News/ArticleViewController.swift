@@ -36,6 +36,18 @@ class ArticleViewController: GeneralViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+<<<<<<< HEAD
+=======
+        articleList = (1...50).map { x -> Article in
+            return Article(ID: UUID().uuidString,
+                           title: "MU đối mặt nhiều thử thách",
+                           articleLink: "",
+                           description: "Trận hòa Borunemouth mới đây mang đến tương lai màu xám cho \"Quỷ đỏ\".",
+                           publishDate: "",
+                           imageLink: "")
+        }
+        
+>>>>>>> origin/master
         DataManager.shared.delegate = self
         
         setupAllSubviews()

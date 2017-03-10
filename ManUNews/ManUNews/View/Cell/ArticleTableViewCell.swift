@@ -103,7 +103,7 @@ extension ArticleTableViewCell {
         contentView.layer.masksToBounds = false
         contentView.layer.shadowRadius = 2.0
         contentView.layer.shadowOpacity = 0.3
-        contentView.layer.shadowOffset = CGSize(width: 2, height: -2)
+        contentView.layer.shadowOffset = CGSize(width: 2, height: 3)
         contentView.layer.shadowColor = UIColor.lightGray.cgColor
         
         //        contentView.layer.borderColor = UIColor.lightGray.cgColor
