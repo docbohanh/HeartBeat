@@ -36,7 +36,7 @@ class ArticleViewController: GeneralViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        articleList = (1...5).map { x -> Article in
+        articleList = (1...50).map { x -> Article in
             return Article(ID: UUID().uuidString,
                            title: "MU đối mặt nhiều thử thách",
                            articleLink: "",
