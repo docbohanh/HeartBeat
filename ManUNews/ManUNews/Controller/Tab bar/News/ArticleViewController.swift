@@ -16,7 +16,7 @@ import RxSwift
 
 class ArticleViewController: GeneralViewController {
     fileprivate enum Size: CGFloat {
-        case padding15 = 15, padding5 = 5, padding10 = 10, button = 44, cell = 120
+        case padding15 = 15, padding5 = 5, padding10 = 10, button = 44, cell = 100
     }
     
     /// PRIVATE
@@ -32,26 +32,19 @@ class ArticleViewController: GeneralViewController {
     var refreshControl: UIRefreshControl!
     
     var articleList: [Article] = []
+    var page: Int = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-<<<<<<< HEAD
-=======
-        articleList = (1...50).map { x -> Article in
-            return Article(ID: UUID().uuidString,
-                           title: "MU đối mặt nhiều thử thách",
-                           articleLink: "",
-                           description: "Trận hòa Borunemouth mới đây mang đến tương lai màu xám cho \"Quỷ đỏ\".",
-                           publishDate: "",
-                           imageLink: "")
-        }
-        
->>>>>>> origin/master
+ 
         DataManager.shared.delegate = self
         
         setupAllSubviews()
         view.setNeedsUpdateConstraints()
+        
+        HUD.showHUD() {
+            DataManager.shared.getNewArticle(page: self.page)
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -61,10 +54,7 @@ class ArticleViewController: GeneralViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-                guard DatabaseSupport.shared.getAllArticle().count == 0 else { return }
-                HUD.showHUD() {
-                    DataManager.shared.getArticle()
-                }
+        
     }
     
     override func updateViewConstraints() {
@@ -90,7 +80,7 @@ extension ArticleViewController {
             return
         }
         
-        DataManager.shared.getArticle()
+        DataManager.shared.getNewArticle(page: page)
         
     }
     
@@ -105,12 +95,13 @@ extension ArticleViewController {
 //------------------------------
 //MARK: GET ARTICLE DELEGATE
 //------------------------------
-extension ArticleViewController: DataManagerDelagate {
-    func downloadArticle(status: Bool, articles: [Article]) {
+extension ArticleViewController: DataManagerDelegate {
+    
+    func downloadedArticle(status: Bool, articles: [Article]) {
+        page += 1
         
         guard status else {
             refreshControl.endRefreshing()
-            HUD.showMessage("Chưa có tin tức mới", position: .center)
             return
         }
         
@@ -152,11 +143,14 @@ extension ArticleViewController: UITableViewDataSource {
     
     func configCell(for cell: ArticleTableViewCell, with article: Article) {
         
+        cell.selectionStyle = .none
+        
         cell.textLabel?.text = article.title
-        cell.detailTextLabel?.text = article.content
-        //        cell.labelTime.text = dateFormatter.string(from: Date(timeIntervalSince1970: article.time))
-        cell.labelTime.text = "" //Utility.shared.stringFromPastTimeToText(article.time)
+        cell.detailTextLabel?.text = article.sapo
+//        cell.labelTime.text = dateFormatter.string(from: Date(timeIntervalSince1970: article.datePublished - 7.hours))
+        cell.labelTime.text = Utility.shared.stringFromPastTimeToText(article.datePublished - 7.hours)
         cell.imageView?.image = Icon.Article.newsEmpty
+        
         cell.countView.countLabel.text = "5"
         
         if arc4random_uniform(3) % 3 == 0 {
@@ -165,7 +159,7 @@ extension ArticleViewController: UITableViewDataSource {
         
         cell.liked.addTarget(self, action: #selector(self.liked(_:)), for: .touchUpInside)
         
-        guard let url = URL(string: article.thumbnail) else { return }
+        guard let url = URL(string: article.avatar) else { return }
         
         let cache = URLCache.shared
         if let data = cache.cachedResponse(for: URLRequest(url: url)) {
@@ -209,8 +203,9 @@ extension ArticleViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         
         let detailVC = ArticleDetailViewController()
-        detailVC.title = "Chi tiết"
+        detailVC.article = articleList[indexPath.row]
         navigationController?.pushViewController(detailVC, animated: true)
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -223,12 +218,9 @@ extension ArticleViewController: UITableViewDelegate {
 // - MARK: - TABLE DELEGATE
 //-------------------------------------------
 extension ArticleViewController: DZNEmptyDataSetSource {
-    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
-        return Icon.Article.newsEmpty
-    }
-    
+        
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let text = "Chưa có tin tức nào được lưu"
+        let text = "Đang cập nhật"
         let attribute = [
             NSFontAttributeName: UIFont(name: FontType.latoLight.., size: FontSize.normal--)!,
             NSForegroundColorAttributeName: UIColor.gray
@@ -243,7 +235,7 @@ extension ArticleViewController: DZNEmptyDataSetSource {
 extension ArticleViewController: DZNEmptyDataSetDelegate {
     func emptyDataSet(_ scrollView: UIScrollView!, didTap view: UIView!) {
         HUD.showHUD("Đang xử lý...") {
-            DataManager.shared.getArticle()
+            DataManager.shared.getNewArticle(page: self.page)
         }
     }
 }

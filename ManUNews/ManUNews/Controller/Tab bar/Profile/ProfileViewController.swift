@@ -51,7 +51,25 @@ class ProfileViewController: GeneralViewController {
     var textFieldName: UITextField!
     var textFieldEmail: UITextField!
     
-    var actionSheet: UIActionSheet!
+    /// Các thông báo
+    var alertType: AlertType?
+    enum AlertType {
+        case editAvatar
+        
+        var title: String {
+            switch self {
+            case .editAvatar:
+                return "Chọn ảnh đại diện"
+            }
+        }
+        
+        var message: String {
+            switch self {
+            case .editAvatar:
+                return ""
+            }
+        }
+    }
         
     /**
      Xác định đang sửa hay không
@@ -134,14 +152,7 @@ extension ProfileViewController {
     func changeAvatar(_ sender: UITapGestureRecognizer) {
         
         hideKeyboard()
-        actionSheet = UIActionSheet(
-            title: "Chọn ảnh đại diện",
-            delegate: self,
-            cancelButtonTitle: "Bỏ qua",
-            destructiveButtonTitle: nil,
-            otherButtonTitles: "Thư viện", "Camera")
-        
-        actionSheet.show(in: view)
+        showAlert(type: .editAvatar)
     }
     
     /**
@@ -173,7 +184,7 @@ extension ProfileViewController {
 //MARK: PRIVATE METHOD
 //------------------------------
 extension ProfileViewController {
-    
+        
     /**
      Ẩn Bàn phím
      */

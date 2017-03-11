@@ -14,7 +14,7 @@ class ArticleTableViewCell: UITableViewCell {
     static let articleIdentifier = "ArticleCell"
     
     enum Size: CGFloat {
-        case Padding15 = 15, Padding10 = 10, Label = 20, Image = 60, icon = 22, padding7 = 7, Padding5 = 5, button = 64
+        case Padding15 = 15, Padding10 = 10, Label = 30, Image = 60, icon = 22, padding7 = 7, Padding5 = 5, button = 64
     }
     
     var labelTime: UILabel!
@@ -44,12 +44,10 @@ class ArticleTableViewCell: UITableViewCell {
                              width: Size.button..,
                              height: contentView.frame.height)
         
-        imageView?.frame = CGRect(x: Size.Padding5..,
-                                  y: Size.Padding10..,
-                                  width: contentView.frame.height - Size.Padding10.. * 2,
-                                  height: contentView.frame.height - Size.Padding10.. * 2)
-        
-        imageView?.layer.cornerRadius = contentView.frame.height / 2 - Size.Padding10..
+        imageView?.frame = CGRect(x: Size.Padding5.. / 2,
+                                  y: Size.Padding5.. / 2,
+                                  width: contentView.frame.height + Size.Padding15..,
+                                  height: contentView.frame.height - Size.Padding5..)
         
         countView.frame = CGRect(x: contentView.frame.width - Size.Label.. - Size.Padding10.. / 2,
                                  y: contentView.frame.height - Size.Label.. - Size.Padding5.. / 2,
@@ -58,25 +56,21 @@ class ArticleTableViewCell: UITableViewCell {
         
         guard let imageView = imageView else { return }
         
-        
-        textLabel?.frame = CGRect(x: imageView.frame.maxX + Size.Padding10..,
-                                  y: Size.Padding10.. / 4,
-                                  width: contentView.frame.width - Size.Padding15.. - (imageView.frame.maxX + Size.Padding10..),
-                                  height: contentView.frame.height / 2 )
+        textLabel?.frame = CGRect(x: imageView.frame.maxX + Size.Padding5..,
+                                  y: 0,
+                                  width: contentView.frame.width - imageView.frame.maxX - Size.Padding10.. * 2,
+                                  height: contentView.frame.height / 2)
         
         labelTime.frame =  CGRect(x: imageView.frame.maxX + Size.Padding10..,
-                                  y: contentView.frame.height  - Size.Label.. - Size.Padding10.. / 2,
-                                  width: contentView.frame.width - Size.Padding10.. - (imageView.frame.maxX + Size.Padding10..) - Size.Label..,
+                                  y: contentView.frame.height  - Size.Label..,
+                                  width: contentView.frame.width - imageView.frame.maxX - Size.Padding10.. * 2,
                                   height: Size.Label..)
         
-        detailTextLabel?.frame = CGRect(x: imageView.frame.maxX + Size.Padding10..,
-                                        y: contentView.frame.height / 2,
-                                        width: contentView.frame.width - (imageView.frame.maxX + Size.Padding10..),
-                                        height: 2 * FontSize.small-- + Size.padding7..)
-        
-        
-        
-        
+        detailTextLabel?.frame = CGRect(x: imageView.frame.maxX + Size.Padding5..,
+                                        y: contentView.frame.height / 2 + Size.Padding10.. / 4,
+                                        width: contentView.frame.width - imageView.frame.maxX - Size.Padding10..,
+                                        height: labelTime.frame.minY - contentView.frame.height / 2 - Size.Padding10.. / 4)
+                
         
     }
     
@@ -92,13 +86,13 @@ extension ArticleTableViewCell {
         liked = setupButton()
         countView = setupCountView()
         
-        contentView.addSubview(countView)
-        contentView.addSubview(liked)
+//        contentView.addSubview(countView)
+//        contentView.addSubview(liked)
         contentView.addSubview(labelTime)
         
         backgroundColor = .clear
         contentView.backgroundColor = .white
-        contentView.layer.cornerRadius = 4
+        contentView.layer.cornerRadius = 2
         
         contentView.layer.masksToBounds = false
         contentView.layer.shadowRadius = 2.0
@@ -154,7 +148,7 @@ extension ArticleTableViewCell {
         textLabel?.textColor = UIColor.darkGray
         
         detailTextLabel?.textAlignment = .left
-        detailTextLabel?.font = UIFont(name: FontType.latoRegular.., size: FontSize.small--)
+        detailTextLabel?.font = UIFont(name: FontType.latoRegular.., size: FontSize.small++)
         detailTextLabel?.numberOfLines = 2
         detailTextLabel?.textColor = UIColor.gray
     }
@@ -162,7 +156,7 @@ extension ArticleTableViewCell {
     func setupLabel() -> UILabel {
         let label = UILabel()
         label.textAlignment = .right
-        label.font = UIFont(name: FontType.latoRegular.., size: FontSize.small-- - 2)
+        label.font = UIFont(name: FontType.latoRegular.., size: FontSize.small--)
         label.numberOfLines = 1
         label.textColor = UIColor.gray
         

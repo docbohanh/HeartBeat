@@ -32,21 +32,21 @@ public class HTTPGetArticle: HTTPProtocol, HTTPDataRequestProcotol, HTTPDataResp
     
     public class Request {
         
-        var pageIndex: Int
+        var appID: Int
+        var catID: Int
+        var page: Int
         var pageSize: Int
-        var siteID: Int
-        var isVideo: Bool
         
         public init(
-            pageIndex: Int,
-            pageSize: Int,
-            siteID: Int,
-            isVideo: Bool) {
+            appID: Int,
+            catID: Int,
+            page: Int,
+            pageSize: Int) {
             
-            self.pageIndex = pageIndex
+            self.appID = appID
+            self.catID = catID
+            self.page = page
             self.pageSize = pageSize
-            self.siteID = siteID
-            self.isVideo = isVideo
         }
         
     }
@@ -58,10 +58,10 @@ public class HTTPGetArticle: HTTPProtocol, HTTPDataRequestProcotol, HTTPDataResp
     public func serialize(_ request: RequestType) -> Observable<Data> {
         var data = Data()
         
-        data.appendInt32(request.pageIndex)
+        data.appendInt32(request.appID)
+        data.appendInt32(request.catID)
+        data.appendInt32(request.page)
         data.appendInt32(request.pageSize)
-        data.appendInt32(request.siteID)
-        data.appendBool(request.isVideo)
         
         return Observable.just(data)
     }
@@ -87,13 +87,18 @@ public class HTTPGetArticle: HTTPProtocol, HTTPDataRequestProcotol, HTTPDataResp
             
             let articles = try (0..<data.readInt16()).map { _ in
                 Article(
-                    ID: try data.readString(),
-                    thumbnail: try data.readString(),
+                    resourceId: try data.readInt32(),
+                    path: try data.readString(),
+                    avatar: "http://mobile.linkit.vn" + (try data.readString()),
                     title: try data.readString(),
+                    sapo: try data.readString(),
                     content: try data.readString(),
-                    type: try Article.TypeContent(rawValue: data.readInt8()) ?? .unknown,
-                    siteID: try data.readInt32(),
-                    sourceLink: try data.readString())
+                    datePublished: TimeInterval(try data.readInt64()),
+                    isActive: try data.readBool(),
+                    type: try data.readInt32(),
+                    catId: try data.readInt32(),
+                    appId: try data.readInt32()
+                )
             }
             
             return Response(articles: articles)

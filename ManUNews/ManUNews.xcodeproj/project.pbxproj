@@ -40,6 +40,11 @@
 		13C14F931E62A50F004A63F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13C14F911E62A50F004A63F9 /* Main.storyboard */; };
 		13C14F951E62A50F004A63F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13C14F941E62A50F004A63F9 /* Assets.xcassets */; };
 		13C14F981E62A50F004A63F9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13C14F961E62A50F004A63F9 /* LaunchScreen.storyboard */; };
+		13CF3BC21E746AE200C839D1 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CF3BC11E746AE200C839D1 /* NewsViewController.swift */; };
+		13CF3BC41E746CC700C839D1 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CF3BC31E746CC700C839D1 /* VideoViewController.swift */; };
+		13CF3BC61E747B7500C839D1 /* Chameleon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13CF3BC51E747B7500C839D1 /* Chameleon.framework */; };
+		13CF3BC71E747B7500C839D1 /* Chameleon.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 13CF3BC51E747B7500C839D1 /* Chameleon.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		13CF3BC91E74883800C839D1 /* HeaderImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CF3BC81E74883800C839D1 /* HeaderImageView.swift */; };
 		13E55B9E1E6520A30017DEC2 /* HeaderResultTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E55B9D1E6520A30017DEC2 /* HeaderResultTableView.swift */; };
 		13E55BA51E655A0F0017DEC2 /* ResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E55BA31E655A0F0017DEC2 /* ResultTableViewCell.swift */; };
 		13E55BA61E655A0F0017DEC2 /* SeparatorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E55BA41E655A0F0017DEC2 /* SeparatorTableViewCell.swift */; };
@@ -140,6 +145,7 @@
 				139D7EA71E6DC100004E7E8B /* FBSDKShareKit.framework in Embed Frameworks */,
 				13EB4A921E62A71800DFAC5F /* PagingMenuController.framework in Embed Frameworks */,
 				13EB4AB21E62A8C100DFAC5F /* Unbox.framework in Embed Frameworks */,
+				13CF3BC71E747B7500C839D1 /* Chameleon.framework in Embed Frameworks */,
 				13EB4AB41E62A8C100DFAC5F /* Wrap.framework in Embed Frameworks */,
 				139D7EA51E6DC100004E7E8B /* FBSDKLoginKit.framework in Embed Frameworks */,
 				13EB4A9E1E62A71800DFAC5F /* SnapKit.framework in Embed Frameworks */,
@@ -196,6 +202,10 @@
 		13C14F941E62A50F004A63F9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		13C14F971E62A50F004A63F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		13C14F991E62A50F004A63F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		13CF3BC11E746AE200C839D1 /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
+		13CF3BC31E746CC700C839D1 /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
+		13CF3BC51E747B7500C839D1 /* Chameleon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Chameleon.framework; path = Carthage/Build/iOS/Chameleon.framework; sourceTree = "<group>"; };
+		13CF3BC81E74883800C839D1 /* HeaderImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderImageView.swift; sourceTree = "<group>"; };
 		13E55B9D1E6520A30017DEC2 /* HeaderResultTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderResultTableView.swift; sourceTree = "<group>"; };
 		13E55BA31E655A0F0017DEC2 /* ResultTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultTableViewCell.swift; sourceTree = "<group>"; };
 		13E55BA41E655A0F0017DEC2 /* SeparatorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeparatorTableViewCell.swift; sourceTree = "<group>"; };
@@ -300,6 +310,7 @@
 				13EB4A9F1E62A71800DFAC5F /* SwiftyUserDefaults.framework in Frameworks */,
 				5275E5BE1936B6F0691825D1 /* Pods_ManUNews.framework in Frameworks */,
 				139D7E9E1E6DC100004E7E8B /* FacebookLogin.framework in Frameworks */,
+				13CF3BC61E747B7500C839D1 /* Chameleon.framework in Frameworks */,
 				139D7EAA1E6DC50D004E7E8B /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -330,8 +341,10 @@
 		1371293F1E63172100842CC1 /* News */ = {
 			isa = PBXGroup;
 			children = (
+				13CF3BC11E746AE200C839D1 /* NewsViewController.swift */,
 				137129401E63172100842CC1 /* ArticleDetailViewController.swift */,
 				137129411E63172100842CC1 /* ArticleViewController.swift */,
+				13CF3BC31E746CC700C839D1 /* VideoViewController.swift */,
 				137129431E63172100842CC1 /* SelectionTimeViewController.swift */,
 			);
 			path = News;
@@ -488,6 +501,7 @@
 				1386A9471E7096D1000E4DD2 /* ProfileHeaderTableView.swift */,
 				1386A9491E70A902000E4DD2 /* CircleView.swift */,
 				1386A94B1E70A9EB000E4DD2 /* CircleImage.swift */,
+				13CF3BC81E74883800C839D1 /* HeaderImageView.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -520,6 +534,7 @@
 		13EB4AA21E62A71E00DFAC5F /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				13CF3BC51E747B7500C839D1 /* Chameleon.framework */,
 				139D7EA91E6DC50D004E7E8B /* Bolts.framework */,
 				139D7E961E6DC100004E7E8B /* FacebookCore.framework */,
 				139D7E971E6DC100004E7E8B /* FacebookLogin.framework */,
@@ -769,6 +784,7 @@
 			files = (
 				13EB4A701E62A6E400DFAC5F /* CountView.swift in Sources */,
 				13EB4A731E62A6E400DFAC5F /* FUISegmentedControl.m in Sources */,
+				13CF3BC41E746CC700C839D1 /* VideoViewController.swift in Sources */,
 				13EB4AA91E62A83700DFAC5F /* HTTPAPI.swift in Sources */,
 				13EB4A781E62A6E400DFAC5F /* TimeSelectionFooterView.swift in Sources */,
 				13EB4A771E62A6E400DFAC5F /* DatePickerView.swift in Sources */,
@@ -811,10 +827,12 @@
 				13EB4A711E62A6E400DFAC5F /* SegmentedHeaderView.swift in Sources */,
 				13EB4AB91E62AA1100DFAC5F /* RxExtension.swift in Sources */,
 				13EB4AC31E62AAE600DFAC5F /* Error.swift in Sources */,
+				13CF3BC21E746AE200C839D1 /* NewsViewController.swift in Sources */,
 				1371294C1E63172100842CC1 /* ResultViewController.swift in Sources */,
 				13EB4A761E62A6E400DFAC5F /* UIImage+FlatUI.m in Sources */,
 				1386A94A1E70A902000E4DD2 /* CircleView.swift in Sources */,
 				1386A9461E708E35000E4DD2 /* TextFieldTableViewCell.swift in Sources */,
+				13CF3BC91E74883800C839D1 /* HeaderImageView.swift in Sources */,
 				13B84B4C1E6ACEF0006C72E0 /* Team.swift in Sources */,
 				13EB4A641E62A6E400DFAC5F /* Segmented.swift in Sources */,
 				13C14F8E1E62A50F004A63F9 /* AppDelegate.swift in Sources */,
@@ -939,6 +957,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8F6F4BC398C375E0C07E27A6 /* Pods-ManUNews.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = ManUNews/ManUNews.entitlements;
@@ -963,6 +982,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FE1DBF686DBD681F84766623 /* Pods-ManUNews.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = ManUNews/ManUNews.entitlements;

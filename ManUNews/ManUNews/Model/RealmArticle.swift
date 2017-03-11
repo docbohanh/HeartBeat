@@ -38,58 +38,79 @@ class RealmArticle: Object {
 //        self.version            = version
 //    }
     
-    dynamic var ID: String = ""
-    dynamic var thumbnail: String = ""
+    dynamic var resourceId: Int = 0
+    dynamic var path: String = ""
+    dynamic var avatar: String = ""
     dynamic var title: String = ""
+    dynamic var sapo: String = ""
     dynamic var content: String = ""
+    dynamic var datePublished: TimeInterval = 0
+    dynamic var isActive: Bool = true
     dynamic var type: Int = 0
-    dynamic var siteID: Int = 0
-    dynamic var sourceLink: String = ""
+    dynamic var catId: Int = 0
+    dynamic var appId: Int = 0
     
     convenience init(
-        ID: String,
-        thumbnail: String,
+        resourceId: Int,
+        path: String,
+        avatar: String,
         title: String,
+        sapo: String,
         content: String,
+        datePublished: TimeInterval,
+        isActive: Bool,
         type: Int,
-        siteID: Int,
-        sourceLink: String) {
+        catId: Int,
+        appId: Int) {
         
         self.init()
         
-        self.ID = ID
-            self.thumbnail = thumbnail
-            self.title = title
-            self.content = content
-            self.type = type
-            self.siteID = siteID
-            self.sourceLink = sourceLink
+        self.resourceId = resourceId
+        self.path = path
+        self.avatar = avatar
+        self.title = title
+        self.sapo = sapo
+        self.content = content
+        self.datePublished = datePublished
+        self.isActive = isActive
+        self.type = type
+        self.catId = catId
+        self.appId = appId
     }
     
     convenience init(article: Article) {
         self.init()
-        self.ID = article.ID
-        self.thumbnail = article.thumbnail
-        self.title = article.title
-        self.content = article.content
-        self.type = article.type.rawValue
-        self.siteID = article.siteID
-        self.sourceLink = article.sourceLink
+        self.resourceId = article.resourceId
+        self.path       = article.path
+        self.avatar     = article.avatar
+        self.title      = article.title
+        self.sapo       = article.sapo
+        self.content    = article.content
+        self.datePublished = article.datePublished
+        self.isActive   = article.isActive
+        self.type       = article.type
+        self.catId      = article.catId
+        self.appId      = article.appId
+        
     }
     
     override static func primaryKey() -> String? {
-        return "ID"
+        return "resourceId"
     }
     
     func convertToSyncType() -> Article {
         return Article(
-            ID: self.ID,
-            thumbnail: self.thumbnail,
+            resourceId: self.resourceId,
+            path: self.path,
+            avatar: self.avatar,
             title: self.title,
+            sapo: self.sapo,
             content: self.content,
-            type: Article.TypeContent(rawValue: self.type) ?? .unknown,
-            siteID:  self.siteID,
-            sourceLink: self.sourceLink
+            datePublished: self.datePublished,
+            isActive: self.isActive,
+            type: self.type,
+            catId: self.catId,
+            appId: self.appId
         )
     }
     

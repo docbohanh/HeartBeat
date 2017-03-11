@@ -175,7 +175,7 @@ struct Utility {
         
         let tabbarVC = UITabBarController()
         
-        let naviNewsVC = UINavigationController(rootViewController: ArticleViewController())
+        let naviNewsVC = UINavigationController(rootViewController: NewsViewController())
         let naviComunityVC = UINavigationController(rootViewController: ComunityViewController())
         let naviResultVC = UINavigationController(rootViewController: ResultViewController())
         let naviScheduleVC = UINavigationController(rootViewController: ScheduleViewController())

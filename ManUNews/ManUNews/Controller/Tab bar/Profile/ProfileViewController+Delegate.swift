@@ -121,26 +121,39 @@ extension ProfileViewController: UITextFieldDelegate {
 //-------------------------------------------
 
 extension ProfileViewController: UIActionSheetDelegate, UINavigationControllerDelegate {
-    
-    func actionSheet(_ actionSheet: UIActionSheet, clickedButtonAt buttonIndex: Int) {
+        
+    func showAlert(type: AlertType) {
+        alertController = UIAlertController(title: type.title, message: type.message, preferredStyle: .actionSheet)
+        
+        guard let alert = alertController else { return }
+        
         let picker = UIImagePickerController()
         picker.delegate = self
         
-        switch buttonIndex {
-        case 0: // Chọn bỏ qua
-            return
+        switch type {
+        case .editAvatar:
+            alert.addAction(UIAlertAction(title: "Thư viện", style: .default, handler: { [unowned self] _ in
+                picker.sourceType = .photoLibrary
+                self.open(picker)
+            }))
             
-        case 1: // Chọn thư viện
-            picker.sourceType = .photoLibrary
+            alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { [unowned self] _ in
+                picker.sourceType = .camera
+                self.open(picker)
+            }))
             
-        case 2: // Chọn Camera
-            picker.sourceType = .camera
-            
-        default:
-            break
         }
+        
+        alert.addAction(UIAlertAction(title: "Bỏ qua", style: .cancel, handler: nil))
+        
+        present(alert, animated: true, completion: nil)
+        
+    }
+    
+    func open(_ picker: UIImagePickerController) {
         present(picker, animated: true, completion: nil)
     }
+    
 }
 
 //-------------------------------------------
