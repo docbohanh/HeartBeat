@@ -152,23 +152,11 @@ extension ArticleTableViewCell {
         textLabel?.font = UIFont(name: FontType.latoSemibold.., size: FontSize.normal..)
         textLabel?.numberOfLines = 2
         textLabel?.textColor = UIColor.darkGray
-        textLabel?.backgroundColor = UIColor.clear
-        
-        textLabel?.layer.shadowRadius = 0.3
-        textLabel?.layer.shadowOpacity = 0.2
-        textLabel?.layer.shadowOffset = CGSize(width: 0.3, height: 0.3)
-        textLabel?.layer.shadowColor = UIColor.black.cgColor
         
         detailTextLabel?.textAlignment = .left
         detailTextLabel?.font = UIFont(name: FontType.latoRegular.., size: FontSize.small--)
         detailTextLabel?.numberOfLines = 2
         detailTextLabel?.textColor = UIColor.gray
-        detailTextLabel?.backgroundColor = UIColor.clear
-        
-        detailTextLabel?.layer.shadowRadius = 0.5
-        detailTextLabel?.layer.shadowOpacity = 0.3
-        detailTextLabel?.layer.shadowOffset = CGSize(width: 0.5, height: 0.5)
-        detailTextLabel?.layer.shadowColor = UIColor.black.cgColor
     }
     
     func setupLabel() -> UILabel {
@@ -177,13 +165,6 @@ extension ArticleTableViewCell {
         label.font = UIFont(name: FontType.latoRegular.., size: FontSize.small-- - 2)
         label.numberOfLines = 1
         label.textColor = UIColor.gray
-        label.backgroundColor = UIColor.clear
-        
-        label.layer.masksToBounds = false
-        label.layer.shadowRadius = 1.0
-        label.layer.shadowOpacity = 0.3
-        label.layer.shadowOffset = CGSize(width: 0.5, height: 1)
-        label.layer.shadowColor = UIColor.black.cgColor
         
         return label
     }
