@@ -10,6 +10,12 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    enum Size: CGFloat {
+        case cell = 44
+    }
+    
+    var didSetupConstraints = false
+    
     @IBOutlet weak var dragAreaView: UIView!
     @IBOutlet weak var dragView: UIImageView!
     
@@ -18,32 +24,81 @@ class ViewController: UIViewController {
     
     @IBOutlet var panGesture: UIPanGestureRecognizer!
     
-    
     let dragAreaPadding = 5
     var lastBounds = CGRect.zero
-
+    
+    var labelSkillRating: UILabel!
+    var btTraining: UIButton!
+    var btAction: UIButton!
+    var tableAction: UITableView!
+    
+    
+    var arrayAction: [(name: String, action: MentalAction_enum)] = [
+        ("Push", Mental_Push),
+        ("Pull", Mental_Pull),
+        ("Left", Mental_Left),
+        ("Right", Mental_Right)
+    ]
+    
+    /**
+     Engine
+     */
+    let engineWidget: EngineWidget = EngineWidget()
+    
+    var currentPow: CGFloat!
+    var currentAct: MentalAction_t!
+    var isTraining: Bool!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        engineWidget.delegate = self
+        
+        currentPow = 0.0
+        currentAct = arrayAction[0].action
+        isTraining = false
+        
+        Timer.scheduledTimer(
+            timeInterval: 0.1,
+            target: self,
+            selector: #selector(ViewController.updateCubePosition),
+            userInfo: nil, repeats: true
+        )
+        
         lastBounds = self.view.bounds
-        dragAreaView.layer.borderWidth = 1
-        dragAreaView.layer.borderColor = UIColor.white.cgColor
+        dragAreaView.backgroundColor = UIColor.General.background
+        dragAreaView.layer.cornerRadius = 2
         
         dragView.backgroundColor = .clear
         dragView.contentMode = .scaleAspectFill
-        dragView.image = UIImage(named: "Circle")
+        dragView.image = Icon.General.circle
         dragView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.tapOnDragView(_:))))
         
+        
+        setupAllSubviews()
+        view.setNeedsUpdateConstraints()
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    override func updateViewConstraints() {
+        if !didSetupConstraints {
+            setupAllConstraints()
+            didSetupConstraints = true
+        }
+        
+        super.updateViewConstraints()
+    }
+    
 }
 
+//--------------------------
 //MARK: SELECTOR
+//--------------------------
 extension ViewController {
     
     @IBAction func panAction() {
@@ -52,7 +107,7 @@ extension ViewController {
             addAnimation(for: dragView)
             
         case .changed:
-            moveObject()
+            moveCubeAndCheckConstraints()
             
         case .ended:
             dragView.layer.removeAllAnimations()
@@ -62,82 +117,28 @@ extension ViewController {
         }
     }
     
+    /// 
     func tapOnDragView(_ sender: UITapGestureRecognizer) {
         addAnimation(for: dragView)
     }
+    
+    ///
+    func showTableAction(_ sender: AnyObject) {
+         tableAction.isHidden = !tableAction.isHidden
+    }
+    
+    ///
+    func trainingAction(_ sender: UIButton) {
+        guard !isTraining, sender.tag < arrayAction.count else { return }
+        
+        let action = arrayAction[sender.tag].action
+        engineWidget.setActiveAction(action)
+        engineWidget.setTrainingAction(action)
+        engineWidget.setTrainingControl(Mental_Start)
+        isTraining = true
+    }
 }
 
-//MARK: PRIVATE METHOD
-extension ViewController {
-    // MARK: UI Updates
-    
-    func moveObject() {
-        let minX = CGFloat(self.dragAreaPadding)
-        let maxX = self.dragAreaView.bounds.size.width - self.dragView.bounds.size.width - minX
-        
-        let minY = CGFloat(self.dragAreaPadding)
-        let maxY = self.dragAreaView.bounds.size.height - self.dragView.bounds.size.height - minY
-        
-        var translation =  self.panGesture.translation(in: self.dragAreaView)
-        
-        var dragViewX = self.dragViewX.constant + translation.x
-        var dragViewY = self.dragViewY.constant + translation.y
-        
-        if dragViewX < minX {
-            dragViewX = minX
-            translation.x += self.dragViewX.constant - minX
-        }
-        else if dragViewX > maxX {
-            dragViewX = maxX
-            translation.x += self.dragViewX.constant - maxX
-        }
-        else {
-            translation.x = 0
-        }
-        
-        if dragViewY < minY {
-            dragViewY = minY
-            translation.y += self.dragViewY.constant - minY
-        }
-        else if dragViewY > maxY {
-            dragViewY = maxY
-            translation.y += self.dragViewY.constant - maxY
-        }
-        else {
-            translation.y = 0
-        }
-        
-        self.dragViewX.constant = dragViewX
-        self.dragViewY.constant = dragViewY
-        
-        self.panGesture.setTranslation(translation, in: self.dragAreaView)
-        
-        UIView.animate(
-            withDuration: 0.05,
-            delay: 0,
-            options: .beginFromCurrentState,
-            animations: { () -> Void in
-                self.view.layoutIfNeeded()
-        },
-            completion: nil)
-        
-    }
-    
-    
-    /**
-     Basic animation
-     */
-    func addAnimation(for sender: AnyObject) {
-        
-        let theAnimation = CABasicAnimation(keyPath: "transform.scale")
-        
-        theAnimation.duration = 0.3
-        theAnimation.repeatCount = HUGE
-        theAnimation.autoreverses = true
-        theAnimation.fromValue = NSNumber(value: 1.0)
-        theAnimation.toValue = NSNumber(value: 0.85)
-        theAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
-        
-        sender.layer.add(theAnimation, forKey: "animateOpacity")
-    }
-}
+
+
+

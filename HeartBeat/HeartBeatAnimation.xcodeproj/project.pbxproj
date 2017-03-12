@@ -12,24 +12,27 @@
 		13129F521E6403B200D2B82E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13129F501E6403B200D2B82E /* Main.storyboard */; };
 		13129F541E6403B200D2B82E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13129F531E6403B200D2B82E /* Assets.xcassets */; };
 		13129F571E6403B200D2B82E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13129F551E6403B200D2B82E /* LaunchScreen.storyboard */; };
-		13E55BBF1E657C0F0017DEC2 /* MXParallaxHeader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13E55BBE1E657C0F0017DEC2 /* MXParallaxHeader.framework */; };
-		13E55BC01E657C0F0017DEC2 /* MXParallaxHeader.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 13E55BBE1E657C0F0017DEC2 /* MXParallaxHeader.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		13E55BC31E657ED30017DEC2 /* PHExtensions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13E55BC11E657ED30017DEC2 /* PHExtensions.framework */; };
-		13E55BC41E657ED30017DEC2 /* PHExtensions.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 13E55BC11E657ED30017DEC2 /* PHExtensions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		13E55BC51E657ED30017DEC2 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13E55BC21E657ED30017DEC2 /* SnapKit.framework */; };
-		13E55BC61E657ED30017DEC2 /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 13E55BC21E657ED30017DEC2 /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1385C5A01E755D27003C0665 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1385C59E1E755D27003C0665 /* Color.swift */; };
+		1385C5A11E755D27003C0665 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1385C59F1E755D27003C0665 /* Image.swift */; };
+		1385C5A31E755F00003C0665 /* ViewController+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1385C5A21E755F00003C0665 /* ViewController+Setup.swift */; };
+		1385C5AB1E755FD2003C0665 /* EngineWidget.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1385C5AA1E755FD2003C0665 /* EngineWidget.mm */; };
+		1385C5B01E75612C003C0665 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1385C5AF1E75612C003C0665 /* SnapKit.framework */; };
+		1385C5B11E75612C003C0665 /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1385C5AF1E75612C003C0665 /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1385C5B51E7561F8003C0665 /* edk_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1385C5B41E7561F8003C0665 /* edk_ios.framework */; };
+		1385C5B61E7561F8003C0665 /* edk_ios.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1385C5B41E7561F8003C0665 /* edk_ios.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1385C5B81E7574B8003C0665 /* ViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1385C5B71E7574B8003C0665 /* ViewController+Delegate.swift */; };
+		1385C5BA1E75798C003C0665 /* ViewController+Process.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1385C5B91E75798C003C0665 /* ViewController+Process.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		13E55B9B1E6507170017DEC2 /* Embed Frameworks */ = {
+		1385C5B21E75612C003C0665 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				13E55BC61E657ED30017DEC2 /* SnapKit.framework in Embed Frameworks */,
-				13E55BC41E657ED30017DEC2 /* PHExtensions.framework in Embed Frameworks */,
-				13E55BC01E657C0F0017DEC2 /* MXParallaxHeader.framework in Embed Frameworks */,
+				1385C5B11E75612C003C0665 /* SnapKit.framework in Embed Frameworks */,
+				1385C5B61E7561F8003C0665 /* edk_ios.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -44,10 +47,16 @@
 		13129F531E6403B200D2B82E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		13129F561E6403B200D2B82E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		13129F581E6403B200D2B82E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		13E55BBA1E657B7D0017DEC2 /* HeartBeatAnimation-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HeartBeatAnimation-Bridging-Header.h"; sourceTree = "<group>"; };
-		13E55BBE1E657C0F0017DEC2 /* MXParallaxHeader.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MXParallaxHeader.framework; path = HeartBeatAnimation/Libraries/MXParallaxHeader.framework; sourceTree = "<group>"; };
-		13E55BC11E657ED30017DEC2 /* PHExtensions.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PHExtensions.framework; path = HeartBeatAnimation/Libraries/PHExtensions.framework; sourceTree = "<group>"; };
-		13E55BC21E657ED30017DEC2 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = HeartBeatAnimation/Libraries/SnapKit.framework; sourceTree = "<group>"; };
+		1385C59E1E755D27003C0665 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		1385C59F1E755D27003C0665 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		1385C5A21E755F00003C0665 /* ViewController+Setup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ViewController+Setup.swift"; sourceTree = "<group>"; };
+		1385C5A41E755F8B003C0665 /* HeartBeatAnimation-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HeartBeatAnimation-Bridging-Header.h"; sourceTree = "<group>"; };
+		1385C5A91E755FD2003C0665 /* EngineWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EngineWidget.h; sourceTree = "<group>"; };
+		1385C5AA1E755FD2003C0665 /* EngineWidget.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = EngineWidget.mm; sourceTree = "<group>"; };
+		1385C5AF1E75612C003C0665 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = HeartBeatAnimation/Framework/SnapKit.framework; sourceTree = "<group>"; };
+		1385C5B41E7561F8003C0665 /* edk_ios.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = edk_ios.framework; path = HeartBeatAnimation/Framework/edk_ios.framework; sourceTree = "<group>"; };
+		1385C5B71E7574B8003C0665 /* ViewController+Delegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ViewController+Delegate.swift"; sourceTree = "<group>"; };
+		1385C5B91E75798C003C0665 /* ViewController+Process.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ViewController+Process.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,9 +64,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				13E55BC51E657ED30017DEC2 /* SnapKit.framework in Frameworks */,
-				13E55BC31E657ED30017DEC2 /* PHExtensions.framework in Frameworks */,
-				13E55BBF1E657C0F0017DEC2 /* MXParallaxHeader.framework in Frameworks */,
+				1385C5B01E75612C003C0665 /* SnapKit.framework in Frameworks */,
+				1385C5B51E7561F8003C0665 /* edk_ios.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,7 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				13129F4B1E6403B200D2B82E /* HeartBeatAnimation */,
-				13E55BBD1E657BA30017DEC2 /* Libraries */,
+				1385C5B31E756132003C0665 /* Framework */,
 				13129F4A1E6403B200D2B82E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -84,25 +92,63 @@
 		13129F4B1E6403B200D2B82E /* HeartBeatAnimation */ = {
 			isa = PBXGroup;
 			children = (
-				13129F4C1E6403B200D2B82E /* AppDelegate.swift */,
-				13129F4E1E6403B200D2B82E /* ViewController.swift */,
-				13129F501E6403B200D2B82E /* Main.storyboard */,
-				13129F531E6403B200D2B82E /* Assets.xcassets */,
-				13129F551E6403B200D2B82E /* LaunchScreen.storyboard */,
-				13129F581E6403B200D2B82E /* Info.plist */,
-				13E55BBA1E657B7D0017DEC2 /* HeartBeatAnimation-Bridging-Header.h */,
+				1385C5A71E755FC8003C0665 /* Controller */,
+				1385C5A81E755FD2003C0665 /* Engine */,
+				1385C59D1E755D27003C0665 /* Support */,
+				1385C5AC1E755FEA003C0665 /* Supporting File */,
 			);
 			path = HeartBeatAnimation;
 			sourceTree = "<group>";
 		};
-		13E55BBD1E657BA30017DEC2 /* Libraries */ = {
+		1385C59D1E755D27003C0665 /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				13E55BC11E657ED30017DEC2 /* PHExtensions.framework */,
-				13E55BC21E657ED30017DEC2 /* SnapKit.framework */,
-				13E55BBE1E657C0F0017DEC2 /* MXParallaxHeader.framework */,
+				1385C59E1E755D27003C0665 /* Color.swift */,
+				1385C59F1E755D27003C0665 /* Image.swift */,
+				1385C5A41E755F8B003C0665 /* HeartBeatAnimation-Bridging-Header.h */,
 			);
-			name = Libraries;
+			path = Support;
+			sourceTree = "<group>";
+		};
+		1385C5A71E755FC8003C0665 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				13129F4E1E6403B200D2B82E /* ViewController.swift */,
+				1385C5B91E75798C003C0665 /* ViewController+Process.swift */,
+				1385C5A21E755F00003C0665 /* ViewController+Setup.swift */,
+				1385C5B71E7574B8003C0665 /* ViewController+Delegate.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		1385C5A81E755FD2003C0665 /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				1385C5A91E755FD2003C0665 /* EngineWidget.h */,
+				1385C5AA1E755FD2003C0665 /* EngineWidget.mm */,
+			);
+			path = Engine;
+			sourceTree = "<group>";
+		};
+		1385C5AC1E755FEA003C0665 /* Supporting File */ = {
+			isa = PBXGroup;
+			children = (
+				13129F4C1E6403B200D2B82E /* AppDelegate.swift */,
+				13129F501E6403B200D2B82E /* Main.storyboard */,
+				13129F531E6403B200D2B82E /* Assets.xcassets */,
+				13129F551E6403B200D2B82E /* LaunchScreen.storyboard */,
+				13129F581E6403B200D2B82E /* Info.plist */,
+			);
+			name = "Supporting File";
+			sourceTree = "<group>";
+		};
+		1385C5B31E756132003C0665 /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				1385C5B41E7561F8003C0665 /* edk_ios.framework */,
+				1385C5AF1E75612C003C0665 /* SnapKit.framework */,
+			);
+			name = Framework;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -115,7 +161,7 @@
 				13129F451E6403B200D2B82E /* Sources */,
 				13129F461E6403B200D2B82E /* Frameworks */,
 				13129F471E6403B200D2B82E /* Resources */,
-				13E55B9B1E6507170017DEC2 /* Embed Frameworks */,
+				1385C5B21E75612C003C0665 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -138,7 +184,7 @@
 				TargetAttributes = {
 					13129F481E6403B200D2B82E = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = N5QD3D9LY3;
+						DevelopmentTeam = 4JU8C9USYH;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
@@ -180,8 +226,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1385C5BA1E75798C003C0665 /* ViewController+Process.swift in Sources */,
+				1385C5B81E7574B8003C0665 /* ViewController+Delegate.swift in Sources */,
 				13129F4F1E6403B200D2B82E /* ViewController.swift in Sources */,
+				1385C5A11E755D27003C0665 /* Image.swift in Sources */,
+				1385C5A31E755F00003C0665 /* ViewController+Setup.swift in Sources */,
+				1385C5AB1E755FD2003C0665 /* EngineWidget.mm in Sources */,
 				13129F4D1E6403B200D2B82E /* AppDelegate.swift in Sources */,
+				1385C5A01E755D27003C0665 /* Color.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,19 +357,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = N5QD3D9LY3;
+				DEVELOPMENT_TEAM = 4JU8C9USYH;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/HeartBeatAnimation/Libs",
-					"$(PROJECT_DIR)/HeartBeatAnimation/MXParallaxHeader",
-					"$(PROJECT_DIR)/HeartBeatAnimation/Libraries",
+					"$(PROJECT_DIR)/HeartBeatAnimation/Framework",
 				);
 				INFOPLIST_FILE = HeartBeatAnimation/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.miliket.HeartBeatAnimation;
+				PRODUCT_BUNDLE_IDENTIFIER = com.binhanh.HeartBeatAnimation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "HeartBeatAnimation/HeartBeatAnimation-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "HeartBeatAnimation/Support/HeartBeatAnimation-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
@@ -328,19 +378,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = N5QD3D9LY3;
+				DEVELOPMENT_TEAM = 4JU8C9USYH;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/HeartBeatAnimation/Libs",
-					"$(PROJECT_DIR)/HeartBeatAnimation/MXParallaxHeader",
-					"$(PROJECT_DIR)/HeartBeatAnimation/Libraries",
+					"$(PROJECT_DIR)/HeartBeatAnimation/Framework",
 				);
 				INFOPLIST_FILE = HeartBeatAnimation/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.miliket.HeartBeatAnimation;
+				PRODUCT_BUNDLE_IDENTIFIER = com.binhanh.HeartBeatAnimation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "HeartBeatAnimation/HeartBeatAnimation-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "HeartBeatAnimation/Support/HeartBeatAnimation-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

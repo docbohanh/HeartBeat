@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="f78-72-PwP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="oI8-4v-Luj">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -9,64 +9,64 @@
     </dependencies>
     <scenes>
         <!--View Controller-->
-        <scene sceneID="yF7-hv-QSx">
+        <scene sceneID="9oT-cg-TAK">
             <objects>
-                <viewController id="f78-72-PwP" customClass="ViewController" customModule="HeartBeatAnimation" customModuleProvider="target" sceneMemberID="viewController">
+                <panGestureRecognizer minimumNumberOfTouches="1" maximumNumberOfTouches="1" id="Y2R-aY-czU">
+                    <connections>
+                        <action selector="panAction" destination="oI8-4v-Luj" id="g4M-6I-4zb"/>
+                    </connections>
+                </panGestureRecognizer>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WwH-Rg-NBr" sceneMemberID="firstResponder"/>
+                <viewController id="oI8-4v-Luj" customClass="ViewController" customModule="HeartBeatAnimation" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="dLt-WB-r1R"/>
-                        <viewControllerLayoutGuide type="bottom" id="9Kq-qN-o6I"/>
+                        <viewControllerLayoutGuide type="top" id="jeF-jT-prh"/>
+                        <viewControllerLayoutGuide type="bottom" id="ge0-8V-sYa"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="OOz-FP-Ymt">
+                    <view key="view" contentMode="scaleToFill" id="iai-pQ-90u">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pIq-mH-NLo" userLabel="Drag Area View">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I6e-A9-aWk" userLabel="Drag Area View">
                                 <rect key="frame" x="16" y="137" width="343" height="393"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BPi-PN-Pz4" userLabel="Drag View" customClass="UIImageView">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dMH-DF-i3a" userLabel="Drag View" customClass="UIImageView">
                                         <rect key="frame" x="118" y="20" width="100" height="100"/>
                                         <color key="backgroundColor" red="1" green="0.0096098035349999993" blue="0.028335137900000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="100" id="LwX-vI-GoS"/>
-                                            <constraint firstAttribute="width" constant="100" id="xGg-2T-323"/>
+                                            <constraint firstAttribute="height" constant="100" id="42C-3i-o90"/>
+                                            <constraint firstAttribute="width" constant="100" id="4bi-bh-LpT"/>
                                         </constraints>
                                         <connections>
-                                            <outletCollection property="gestureRecognizers" destination="zEq-NY-HQz" appends="YES" id="Krv-Ai-5lm"/>
+                                            <outletCollection property="gestureRecognizers" destination="Y2R-aY-czU" appends="YES" id="iE8-2X-VB8"/>
                                         </connections>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstItem="BPi-PN-Pz4" firstAttribute="leading" secondItem="pIq-mH-NLo" secondAttribute="leading" constant="118" id="4fx-em-szG"/>
-                                    <constraint firstItem="BPi-PN-Pz4" firstAttribute="top" secondItem="pIq-mH-NLo" secondAttribute="top" constant="20" id="rgK-ev-4pc"/>
+                                    <constraint firstItem="dMH-DF-i3a" firstAttribute="top" secondItem="I6e-A9-aWk" secondAttribute="top" constant="20" id="PrR-QB-tsh"/>
+                                    <constraint firstItem="dMH-DF-i3a" firstAttribute="leading" secondItem="I6e-A9-aWk" secondAttribute="leading" constant="118" id="qQK-yx-6SR"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="pIq-mH-NLo" secondAttribute="trailing" constant="16" id="9d4-QV-dbR"/>
-                            <constraint firstItem="pIq-mH-NLo" firstAttribute="centerY" secondItem="OOz-FP-Ymt" secondAttribute="centerY" id="p3U-Nr-UKa"/>
-                            <constraint firstItem="pIq-mH-NLo" firstAttribute="leading" secondItem="OOz-FP-Ymt" secondAttribute="leading" constant="16" id="sPc-vl-4Yt"/>
-                            <constraint firstItem="9Kq-qN-o6I" firstAttribute="top" secondItem="pIq-mH-NLo" secondAttribute="bottom" constant="137" id="uG9-vf-Szp"/>
+                            <constraint firstItem="I6e-A9-aWk" firstAttribute="leading" secondItem="iai-pQ-90u" secondAttribute="leading" constant="16" id="Off-H6-vL9"/>
+                            <constraint firstItem="I6e-A9-aWk" firstAttribute="centerY" secondItem="iai-pQ-90u" secondAttribute="centerY" id="gFn-Dg-aUe"/>
+                            <constraint firstAttribute="trailing" secondItem="I6e-A9-aWk" secondAttribute="trailing" constant="16" id="myp-PH-eD4"/>
+                            <constraint firstItem="ge0-8V-sYa" firstAttribute="top" secondItem="I6e-A9-aWk" secondAttribute="bottom" constant="137" id="rZt-Mz-RIV"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="dragAreaView" destination="pIq-mH-NLo" id="oHB-oP-4eF"/>
-                        <outlet property="dragView" destination="BPi-PN-Pz4" id="tTT-nz-llf"/>
-                        <outlet property="dragViewX" destination="4fx-em-szG" id="D9N-10-5hr"/>
-                        <outlet property="dragViewY" destination="rgK-ev-4pc" id="PkX-oz-aEL"/>
-                        <outlet property="panGesture" destination="zEq-NY-HQz" id="vpy-T0-Qlu"/>
+                        <outlet property="dragAreaView" destination="I6e-A9-aWk" id="qi4-mg-bRn"/>
+                        <outlet property="dragView" destination="dMH-DF-i3a" id="efn-MQ-zBY"/>
+                        <outlet property="dragViewX" destination="qQK-yx-6SR" id="h0P-Mh-dD1"/>
+                        <outlet property="dragViewY" destination="PrR-QB-tsh" id="zQx-zN-4y5"/>
+                        <outlet property="panGesture" destination="Y2R-aY-czU" id="0ly-Pf-Ibb"/>
                     </connections>
                 </viewController>
-                <panGestureRecognizer minimumNumberOfTouches="1" maximumNumberOfTouches="1" id="zEq-NY-HQz">
-                    <connections>
-                        <action selector="panAction" destination="f78-72-PwP" id="HCC-w4-kCN"/>
-                    </connections>
-                </panGestureRecognizer>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mOr-wf-tbM" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-68" y="169.56521739130437"/>
+            <point key="canvasLocation" x="-1577" y="-558"/>
         </scene>
     </scenes>
 </document>
