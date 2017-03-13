@@ -1,3 +1,0 @@
-framework module RxExtensions {
-    header "RxExtensions-Swift.h"
-}
